@@ -17,6 +17,11 @@ class isAdministratie
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(Auth::user()->role_id === 2) {
+            return $next($request);
+        }
+        else {
+            return redirect('/')->with("error", "User role not correct");
+        }
     }
 }
