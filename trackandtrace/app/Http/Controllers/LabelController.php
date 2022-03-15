@@ -37,18 +37,19 @@ class LabelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'TrackingNumber' => 'required',
-            'Package_name' => 'required',
-            'Name_Sender' => 'required',
-            'Address_Sender' => 'required',
-            'Name_Reciever' => 'required',
-            'Address_Reciever' => 'required',
-            'Date' => 'required',
-            'Dimensions' => 'required',
-            'Weight' => 'required'
+            'multiInput.*.TrackingNumber' => 'required',
+            'multiInput.*.Package_name' => 'required',
+            'multiInput.*.Name_Sender' => 'required',
+            'multiInput.*.Address_Sender' => 'required',
+            'multiInput.*.Name_Reciever' => 'required',
+            'multiInput.*.Address_Reciever' => 'required',
+            'multiInput.*.Date' => 'required',
+            'multiInput.*.Dimensions' => 'required',
+            'multiInput.*.Weight' => 'required'
         ]);
-
-        Labels::create($request->all());
+        foreach ($request->multiInput as $key => $value) {
+            Labels::create($value);
+        }
         return redirect()->route('labels.index')->with('success' , 'Label succesvol toegevoegd');
     }
 
@@ -95,7 +96,7 @@ class LabelController extends Controller
             'Dimensions' => 'required',
             'Weight' => 'required'
         ]);
-        
+
         $label = Labels::find($id);
         $label->TrackingNumber = $request->get('TrackingNumber');
         $label->Package_name = $request->get('Package_name');
