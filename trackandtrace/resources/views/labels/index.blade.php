@@ -12,6 +12,15 @@
          <div class="col-lg-12 margin-tb">
                <div class="pull-right">
                   <a class="btn btn-success" href="{{ route('labels.create') }}"> Nieuwe label aanmaken</a>
+                  <form method="POST" action="{{ route('labels.search') }}">
+                    @csrf
+                    @method('put')
+                    <div class="inset-y-0 right-0">
+                        <input type="search" name="search" class="form-control"></input>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
                </div>
          </div>
       </div>

@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('/labels' , LabelController::class);
+Route::put('/labels', [LabelController::class, 'search'])->name('labels.search');
 
 Route::middleware(['auth' , 'isSuperAdmin'])->group(function() {
     Route::resource('/home', HomeController::class)->only(['index']);

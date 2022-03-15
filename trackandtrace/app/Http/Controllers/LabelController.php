@@ -96,4 +96,14 @@ class LabelController extends Controller
     {
         //
     }
+
+    public function search(Request $request) {
+        $label = $request->input('search');
+        if(empty($label)) {
+            return redirect()->route('labels.index');
+        }
+        $data = Labels::whereRaw(
+            "MATCH(Name_Sender)AGAINST(?)" , array($label));
+        return view('labels.index' ,['labels' => $data]);
+    }
 }
