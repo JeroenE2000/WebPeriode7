@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LabelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::resource('/labels' , LabelController::class);
 
 Route::middleware(['auth' , 'isSuperAdmin'])->group(function() {
     Route::resource('/home', HomeController::class)->only(['index']);
