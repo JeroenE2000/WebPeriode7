@@ -21,17 +21,20 @@
                 <form action="{{ route('labels.store') }}" method="POST">
                     @csrf
                     <table class="table" id="multiForm">
-                        <tr>
-                            <th>TrackingNumber</th>
-                            <th>Package_name</th>
-                            <th>Name_Sender</th>
-                            <th>Address_Sender</th>
-                            <th>Name_Reciever</th>
-                            <th>Address_Reciever</th>
-                            <th>Date</th>
-                            <th>Dimensions</th>
-                            <th>Weight</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>TrackingNumber</th>
+                                <th>Package_name</th>
+                                <th>Name_Sender</th>
+                                <th>Address_Sender</th>
+                                <th>Name_Reciever</th>
+                                <th>Address_Reciever</th>
+                                <th>Date</th>
+                                <th>Dimensions</th>
+                                <th>Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td><input type="number" name="multiInput[0][TrackingNumber]" class="form-control"/></td>
                             <td><input type="text" name="multiInput[0][Package_name]" class="form-control"/></td>
@@ -44,6 +47,20 @@
                             <td><input type="number" name="multiInput[0][Weight]" class="form-control"/></td>
                             <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark"></td>
                         </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                               <td>trackingNumber</td>
+                               <td>Package_name</td>
+                               <td>Name_Sender</td>
+                               <td>Address_Sender</td>
+                               <td>Name_Reciever</td>
+                               <td>Address_Reciever</td>
+                               <td>Date</td>
+                               <td>Dimensions</td>
+                               <td>Weight</td>
+                            </tr>
+                         </tfoot>
                     </table>
                     <div class="d-grid mt-3">
                       <input type="submit" class="btn btn-dark btn-block" value="Submit">
