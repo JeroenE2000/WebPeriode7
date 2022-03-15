@@ -71,7 +71,8 @@ class LabelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $label = Labels::find($id);
+        return view('labels.update' , compact('label'));
     }
 
     /**
@@ -83,7 +84,31 @@ class LabelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'TrackingNumber' => 'required',
+            'Package_name' => 'required',
+            'Name_Sender' => 'required',
+            'Address_Sender' => 'required',
+            'Name_Reciever' => 'required',
+            'Address_Reciever' => 'required',
+            'Date' => 'required',
+            'Dimensions' => 'required',
+            'Weight' => 'required'
+        ]);
+        
+        $label = Labels::find($id);
+        $label->TrackingNumber = $request->get('TrackingNumber');
+        $label->Package_name = $request->get('Package_name');
+        $label->Name_Sender = $request->get('Name_Sender');
+        $label->Address_Reciever = $request->get('Address_Reciever');
+        $label->Name_Reciever = $request->get('Name_Reciever');
+        $label->Address_Reciever = $request->get('Address_Reciever');
+        $label->Date = $request->get('Date');
+        $label->Dimensions = $request->get('Dimensions');
+        $label->Weight = $request->get('Weight');
+
+        $label->update();
+        return redirect()->route('labels.index')->with('success' , 'Label updated');
     }
 
     /**

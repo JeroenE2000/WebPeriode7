@@ -60,7 +60,7 @@
                            <td>{{$l->Date}}</td>
                            <td>{{$l->Dimensions}}</td>
                            <td>{{$l->Weight}}</td>
-                           <td><a class="btn btn-primary" href="{{ route('labels.edit',$l->id) }}">Bijwerken</a></td>
+                           <td><a class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
                         </tr>
                         @endforeach
                      </tbody>
