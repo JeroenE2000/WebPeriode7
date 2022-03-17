@@ -11,11 +11,14 @@
       <div class="row">
          <div class="col-lg-12 margin-tb">
                <div class="pull-right">
-                  <a class="btn btn-success" href="{{ route('labels.create') }}"> Nieuwe label aanmaken</a>
+                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                    <a class="btn btn-success" href="{{ route('labels.create') }}"> Nieuwe label aanmaken</a>
+                @endif
                   <form method="POST" action="{{ route('labels.search') }}">
                     @csrf
                     @method('put')
-                    <div class="inset-y-0 right-0">
+                    <div class="col-md-6">
+                        <label for="search" class="col-md-4 col-form-label text-md-end">{{ __('Search function') }}</label>
                         <input type="search" name="search" class="form-control"></input>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

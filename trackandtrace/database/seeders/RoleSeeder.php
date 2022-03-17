@@ -26,5 +26,8 @@ class RoleSeeder extends Seeder
         DB::table('roles')->insert([
             'name' => "inpakker",
         ]);
+        DB::table('roles')->insert([
+            'name' => "ontvanger",
+        ]);
     }
 }

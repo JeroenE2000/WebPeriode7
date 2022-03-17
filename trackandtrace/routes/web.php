@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +21,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' => false, 'reset' => false]);
-Route::resource('/labels' , LabelController::class);
-Route::put('/labels', [LabelController::class, 'search'])->name('labels.search');
+Auth::routes();
 
-Route::middleware(['auth' , 'isSuperAdmin'])->group(function() {
-    Route::resource('/home', HomeController::class)->only(['index']);
-    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/register', [RegisterController::class, 'register']);
+Route::resource('/home', HomeController::class)->only(['index']);
+
+Route::middleware(['isSuperAdmin'])->group(function() {
+    Route::resource('/labels' , LabelController::class);
+    Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
+});
+
+Route::middleware(['isAdministratie'])->group(function() {
+    Route::resource('/labels' , LabelController::class)->only(['index' , 'create' , 'update']);
+    Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
+});
+
+Route::middleware(['isInPakker'])->group(function() {
+    Route::resource('/labels' , LabelController::class)->only(['index']);
+    Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
 });
 
 
