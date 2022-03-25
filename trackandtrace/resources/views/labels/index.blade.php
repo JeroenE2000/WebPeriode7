@@ -19,7 +19,7 @@
                     @method('put')
                     <div class="col-md-6">
                         <label for="search" class="col-md-4 col-form-label text-md-end">{{ __('Search function') }}</label>
-                        <input type="search" name="search" class="form-control"></input>
+                        <input value="{{ request()->get('search') }}" type="search" name="search" class="form-control"></input>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>

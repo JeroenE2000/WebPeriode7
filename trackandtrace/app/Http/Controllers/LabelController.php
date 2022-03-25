@@ -129,8 +129,7 @@ class LabelController extends Controller
             return redirect()->route('labels.index');
         }
 
-        $labels = Labels::whereRaw(
-            'MATCH (*) AGAINST (?)' , array($label));
-        return view('labels.index' ,['labels' => $labels]);
+        $data = Labels::search($request->search)->get();
+        return view('labels.index' ,['labels' => $data]);
     }
 }
