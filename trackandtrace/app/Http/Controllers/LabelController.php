@@ -128,8 +128,8 @@ class LabelController extends Controller
         if(empty($label)) {
             return redirect()->route('labels.index');
         }
-        $data = Labels::search($request->search)->get();
+        $data = Labels::whereRaw(
+            "MATCH(Name_Sender)AGAINST(?)" , array($label));
         return view('labels.index' ,['labels' => $data]);
-
     }
 }
