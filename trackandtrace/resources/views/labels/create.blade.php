@@ -12,60 +12,75 @@
         </ul>
     </div>
 @endif
-<section class="content">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Labels aanmaken</h3>
-            </div>
-            <form action="{{ route('labels.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label class="form-label" for="title">TrackingNumber:&#42;</label>
-                    <input type="text" name="TrackingNumber" class="form-control" required></input>
+    <section class="content">
+        <div class="col-8 d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Labels aanmaken</h3>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="Package_name">Package name:&#42;</label>
-                    <input type="text" name="Package_name" class="form-control" required></input>
+                <form action="{{ route('labels.store') }}" method="POST">
+                    @csrf
+                    <table class="table" id="multiForm">
+                        <thead>
+                            <tr>
+                                <th>TrackingNumber</th>
+                                <th>Package_name</th>
+                                <th>Name_Sender</th>
+                                <th>Address_Sender</th>
+                                <th>Name_Reciever</th>
+                                <th>Address_Reciever</th>
+                                <th>Date</th>
+                                <th>Dimensions</th>
+                                <th>Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="number" name="multiInput[0][TrackingNumber]" class="form-control" required/></td>
+                            <td><input type="text" name="multiInput[0][Package_name]" class="form-control" required/></td>
+                            <td><input type="text" name="multiInput[0][Name_Sender]" class="form-control"required/></td>
+                            <td><input type="text" name="multiInput[0][Address_Sender]" class="form-control" required/></td>
+                            <td><input type="text" name="multiInput[0][Name_Reciever]" class="form-control" required/></td>
+                            <td><input type="text" name="multiInput[0][Address_Reciever]" class="form-control" required/></td>
+                            <td><input type="date" name="multiInput[0][Date]" class="form-control" required/></td>
+                            <td><input type="text" name="multiInput[0][Dimensions]" class="form-control" required/></td>
+                            <td><input type="number" name="multiInput[0][Weight]" class="form-control" required/></td>
+                            <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark" required></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                               <td>trackingNumber</td>
+                               <td>Package_name</td>
+                               <td>Name_Sender</td>
+                               <td>Address_Sender</td>
+                               <td>Name_Reciever</td>
+                               <td>Address_Reciever</td>
+                               <td>Date</td>
+                               <td>Dimensions</td>
+                               <td>Weight</td>
+                            </tr>
+                         </tfoot>
+                    </table>
+                    <div class="d-grid mt-3">
+                      <input type="submit" class="btn btn-dark btn-block" value="Submit">
+                    </div>
+                </form>
+                <div class="pull-right">
+                    <a class="btn btn-primary" href="{{ route('labels.index') }}"> Back</a>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="Name_Sender">Name sender:</label>
-                    <input type="text" name="Name_Sender" class="form-control"></input>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="Address_Sender">Address Sender:&#42;</label>
-                    <input type="text" name="Address_Sender" class="form-control" required></input>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="Name_Reciever">Name Receiver:&#42;</label>
-                    <input type="text" name="Name_Reciever" class="form-control" required></input>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="Address_Reciever">Adress Receiver:&#42;</label>
-                    <input type="text" name="Address_Reciever" class="form-control" required></input>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="Date">Date:&#42;</label>
-                    <input type="date" name="Date" class="form-control" required></input>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="Dimensions">Dimisions:&#42;</label>
-                    <input type="text" name="Dimensions" class="form-control" required></input>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="Weight">Weight:&#42;</label>
-                    <input type="number" name="Weight" class="form-control" required></input>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-
-            </form>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('labels.index') }}"> Back</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <script>
+        var i = 0;
+        $("#addRemoveIp").click(function () {
+            ++i;
+            $("#multiForm").append('<tr><td><input type="number" name="multiInput['+i+'][TrackingNumber]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Package_name]" class="form-control" required /></td><td><input type="text" name="multiInput['+i+'][Name_Sender]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Address_Sender]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Name_Reciever]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Address_Reciever]" class="form-control" required/></td><td><input type="date" name="multiInput['+i+'][Date]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Dimensions]" class="form-control" required/></td><td><input type="number" name="multiInput['+i+'][Weight]" class="form-control" required/></td><td><button type="button" class="remove-item btn btn-danger">Delete</button></td></tr>');
+        });
+        $(document).on('click', '.remove-item', function () {
+            $(this).parents('tr').remove();
+        });
+    </script>
 
 @endsection

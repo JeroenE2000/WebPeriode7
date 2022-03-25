@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'isSuperAdmin' =>\App\Http\Middleware\isSuperAdmin::class,
         'isInPakker' =>\App\Http\Middleware\isInPakker::class,
         'isAdministratie' =>\App\Http\Middleware\isAdministratie::class,
+        'isReceiver' =>\App\Http\Middleware\isReceiver::class,
     ];
 }
