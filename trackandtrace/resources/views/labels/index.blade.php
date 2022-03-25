@@ -63,7 +63,9 @@
                            <td>{{$l->Date}}</td>
                            <td>{{$l->Dimensions}}</td>
                            <td>{{$l->Weight}}</td>
+                           @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                            <td><a class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
+                            @endif
                         </tr>
                         @endforeach
                      </tbody>

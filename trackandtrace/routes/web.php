@@ -24,20 +24,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('/home', HomeController::class)->only(['index']);
+Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
 
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
-    Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
 });
 
 Route::middleware(['isAdministratie'])->group(function() {
-    Route::resource('/labels' , LabelController::class)->only(['index' , 'create' , 'update']);
-    Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
+    Route::resource('/labels' , LabelController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update' , 'search']);
 });
 
 Route::middleware(['isInPakker'])->group(function() {
-    Route::resource('/labels' , LabelController::class)->only(['index']);
-    Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
+    Route::resource('/labels' , LabelController::class)->only(['index' , 'search']);
 });
 
 
