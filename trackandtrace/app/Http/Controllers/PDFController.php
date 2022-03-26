@@ -19,9 +19,9 @@ class PDFController extends Controller
         $labels = ['title'=>'PrintLabels',
         'date'=>date('d/m/y'),
         'labels'=> $data];
-        
-        $pdf = PDF::loadView('labels.index', compact('labels'));
-        return $pdf->download('test.pdf');
+
+        $pdf = PDF::loadView('barry.index', compact('labels'));
+        return $pdf->download('PDF.pdf');
     }
     /**
      * Show the form for creating a new resource.
