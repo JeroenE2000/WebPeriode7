@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Labels;
 use Illuminate\Http\Request;
-
+use PDF;
 
 class PDFController extends Controller
 {
@@ -15,10 +15,13 @@ class PDFController extends Controller
      */
     public function index()
     {
-        $labels = Labels::all();
-        $data = ['title'=>'PrintLabels',
+        $data = Labels::all();
+        $labels = ['title'=>'PrintLabels',
         'date'=>date('d/m/y'),
-        'labels'=> $labels];
+        'labels'=> $data];
+        
+        $pdf = PDF::loadView('labels.index', compact('labels'));
+        return $pdf->download('test.pdf');
     }
     /**
      * Show the form for creating a new resource.
