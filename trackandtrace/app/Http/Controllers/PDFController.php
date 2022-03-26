@@ -20,7 +20,7 @@ class PDFController extends Controller
         'date'=>date('d/m/y'),
         'labels'=> $data];
 
-        $pdf = PDF::loadView('barry.index', compact('labels'));
+        $pdf = PDF::loadView('barry.index', $labels);
         return $pdf->download('PDF.pdf');
     }
     /**
