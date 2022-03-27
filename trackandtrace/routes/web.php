@@ -29,6 +29,7 @@ Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.s
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
     Route::get('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
+    Route::get('/generate-singlebarcode/{id}' , [PDFController::class, 'singlePDF'])->name('singlePDF.barcode');
 });
 
 Route::middleware(['isAdministratie'])->group(function() {
