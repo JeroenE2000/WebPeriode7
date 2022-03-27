@@ -55,6 +55,9 @@
                         @else
                             <li class="nav-item dropdown">
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('labels.index') }}">{{ __('Labels') }}</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

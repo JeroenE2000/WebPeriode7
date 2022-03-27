@@ -33,7 +33,8 @@ Route::middleware(['isSuperAdmin'])->group(function() {
 
 Route::middleware(['isAdministratie'])->group(function() {
     Route::resource('/labels' , LabelController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update' , 'search']);
-    Route::get('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
+    Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
+    Route::get('/generate-singlebarcode/{id}' , [PDFController::class, 'singlePDF'])->name('singlePDF.barcode');
 });
 
 Route::middleware(['isInPakker'])->group(function() {

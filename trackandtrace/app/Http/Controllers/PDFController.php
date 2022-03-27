@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Labels;
 use Illuminate\Http\Request;
 use PDF;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class PDFController extends Controller
 {
@@ -13,9 +14,9 @@ class PDFController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Labels::all();
+        $data = Labels::find(array_keys($request->selectedvalue));
         $labels = ['title'=>'PrintLabels',
         'date'=>date('d/m/y'),
         'labels'=> $data];
@@ -23,69 +24,14 @@ class PDFController extends Controller
         $pdf = PDF::loadView('barry.index', $labels);
         return $pdf->download('PDF.pdf');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function singlePDF($id)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $data = Labels::find($id);
+        $labels = ['title'=>'PrintLabels',
+        'date'=>date('d/m/y'),
+        'labels'=> $data];
+        $pdf = PDF::loadView('barry.singlePDF', $labels);
+        return $pdf->download('PDF.pdf');
     }
 }

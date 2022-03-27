@@ -34,57 +34,74 @@
                   <h3 class="card-title">Labels</h3>
                </div>
                <!-- /.card-header -->
-               <div class="card-body">
-                  <table id="" class="table table-bordered table-hover">
-                     <thead>
-                        <tr>
-                           <th>id</th>
-                           <td>trackingNumber</td>
-                           <td>Package_name</td>
-                           <td>Name_Sender</td>
-                           <td>Address_Sender</td>
-                           <td>Name_Reciever</td>
-                           <td>Address_Reciever</td>
-                           <td>Date</td>
-                           <td>Dimensions</td>
-                           <td>Weight</td>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        @foreach($labels as $l)
-                        <tr>
-                           <td>{{$l->id}}</td>
-                           <td>{{$l->TrackingNumber}}</td>
-                           <td>{{$l->Package_name}}</td>
-                           <td>{{$l->Name_Sender}}</td>
-                           <td>{{$l->Address_Sender}}</td>
-                           <td>{{$l->Name_Reciever}}</td>
-                           <td>{{$l->Address_Reciever}}</td>
-                           <td>{{$l->Date}}</td>
-                           <td>{{$l->Dimensions}}</td>
-                           <td>{{$l->Weight}}</td>
-                           @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                           <td><a class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
-                            @endif
-                        </tr>
-                        @endforeach
-                     </tbody>
-                     <tfoot>
-                        <tr>
-                           <th>id</th>
-                           <td>trackingNumber</td>
-                           <td>Package_name</td>
-                           <td>Name_Sender</td>
-                           <td>Address_Sender</td>
-                           <td>Name_Reciever</td>
-                           <td>Address_Reciever</td>
-                           <td>Date</td>
-                           <td>Dimensions</td>
-                           <td>Weight</td>
-                        </tr>
-                     </tfoot>
-                  </table>
-               </div>
+               <form action="{{ route('generate.barcode') }}" method="POST">
+                    @csrf
+                <div class="card-body">
+                        <table id="" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                <th>id</th>
+                                <td>trackingNumber</td>
+                                <td>Package_name</td>
+                                <td>Name_Sender</td>
+                                <td>Address_Sender</td>
+                                <td>Name_Reciever</td>
+                                <td>Address_Reciever</td>
+                                <td>Date</td>
+                                <td>Dimensions</td>
+                                <td>Weight</td>
+                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                <td>Bijwerken</td>
+                                <td>Pdfprint</td>
+                                <td>Checkbox</td>
+                                    @endif
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($labels as $l)
+                                <tr>
+                                <td>{{$l->id}}</td>
+                                <td>{{$l->TrackingNumber}}</td>
+                                <td>{{$l->Package_name}}</td>
+                                <td>{{$l->Name_Sender}}</td>
+                                <td>{{$l->Address_Sender}}</td>
+                                <td>{{$l->Name_Reciever}}</td>
+                                <td>{{$l->Address_Reciever}}</td>
+                                <td>{{$l->Date}}</td>
+                                <td>{{$l->Dimensions}}</td>
+                                <td>{{$l->Weight}}</td>
+                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                    <td><a class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
+                                    <td><a class="btn btn-primary" href="{{ route('singlePDF.barcode',$l) }}">Labelprint</a></td>
+                                    <td><input type="checkbox" name="selectedvalue[{{$l->id}}]pdf"/> </td>
+                                    @endif
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                <th>id</th>
+                                <td>trackingNumber</td>
+                                <td>Package_name</td>
+                                <td>Name_Sender</td>
+                                <td>Address_Sender</td>
+                                <td>Name_Reciever</td>
+                                <td>Address_Reciever</td>
+                                <td>Date</td>
+                                <td>Dimensions</td>
+                                <td>Weight</td>
+                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                <td>Bijwerken</td>
+                                <td>Pdfprint</td>
+                                    @endif
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="">
+                        <input type="submit" class="btn btn-primary btn-block" value="PdfExport">
+                      </div>
+                </form>
                <!-- /.card-body -->
             </div>
          </div>
