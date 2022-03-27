@@ -54,7 +54,7 @@
                                 <td>Bijwerken</td>
                                 <td>Pdfprint</td>
                                 <td>Checkbox</td>
-                                    @endif
+                                @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,9 +98,11 @@
                             </tfoot>
                         </table>
                     </div>
+                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                     <div class="">
                         <input type="submit" class="btn btn-primary btn-block" value="PdfExport">
                       </div>
+                    @endif
                 </form>
                <!-- /.card-body -->
             </div>
