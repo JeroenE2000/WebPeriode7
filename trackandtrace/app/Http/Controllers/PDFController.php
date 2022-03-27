@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Labels;
 use Illuminate\Http\Request;
 use PDF;
-use PhpParser\Node\Expr\Cast\Array_;
 
 class PDFController extends Controller
 {
