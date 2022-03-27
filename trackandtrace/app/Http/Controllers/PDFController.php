@@ -24,13 +24,5 @@ class PDFController extends Controller
         return $pdf->download('PDF.pdf');
     }
 
-    public function singlePDF($id)
-    {
-        $data = Labels::find($id);
-        $labels = ['title'=>'PrintLabels',
-        'date'=>date('d/m/y'),
-        'labels'=> $data];
-        $pdf = PDF::loadView('barry.singlePDF', $labels);
-        return $pdf->download('PDF.pdf');
-    }
+   
 }
