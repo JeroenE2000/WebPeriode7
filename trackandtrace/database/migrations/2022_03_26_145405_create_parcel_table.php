@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
+            $table->string('deliveryservice');
             $table->foreignId('label_id')->references('id')->on('labels')->onDelete('cascade');
             $table->foreignId('parcel_status_id')->references('id')->on('parcel_statuses')->onDelete('cascade');
             $table->timestamps();

@@ -53,7 +53,6 @@
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                 <td>Bijwerken</td>
                                 <td>Pdfprint</td>
-                                <td>Checkbox</td>
                                 @endif
                                 </tr>
                             </thead>
@@ -72,7 +71,6 @@
                                 <td>{{$l->Weight}}</td>
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <td><a class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
-                                    <td><a class="btn btn-primary" href="{{ route('singlePDF.barcode',$l) }}">Labelprint</a></td>
                                     <td><input type="checkbox" name="selectedvalue[{{$l->id}}]pdf"/> </td>
                                     @endif
                                 </tr>
