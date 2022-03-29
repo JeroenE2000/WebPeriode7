@@ -59,7 +59,8 @@ class PackageController extends Controller
     public function update(Request $request, $id)
     {
         $package = Package::find($id);
-        return $package->save($request->all());
+        $package->update($request->all());
+        return $package;
     }
 
     /**
@@ -70,6 +71,7 @@ class PackageController extends Controller
      */
     public function destroy($id)
     {
-        return Package::find($id)->delete();
+        Package::destroy($id);
+        return Package::all();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AuthApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PackageController;
@@ -17,17 +17,38 @@ use App\Http\Controllers\PackageController;
 |
 */
 
-Auth::routes();
 
-Route::controller(PackageController::class)->group(function() {
-    route::get('packages' , 'index');
-    route::get('packages/{id}' , 'show');
-    route::post('packages', 'store');
-    route::put('packages/{id}' , 'update');
-    route::delete('packages/{id}', 'delete');
+//public routes
+Route::controller(AuthApiController::class)->group(function() {
+    route::post('/register' , 'register');
+    route::post('/login' , 'login');
 });
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+//protected routes
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::controller(PackageController::class)->group(function() {
+        route::get('/packages' , 'index');
+        route::get('/packages/{id}' , 'show');
+    });
+    Route::controller(AuthApiController::class)->group(function() {
+        route::post('/logout' , 'logout');
+    });
+
+    Route::group(['middleware' => ['isSuperAdmin']], function() {
+        Route::controller(PackageController::class)->group(function() {
+            route::post('/packages', 'store');
+            route::put('/packages/{id}' , 'update');
+            route::delete('/packages/{id}', 'destroy');
+        });
+    });
+    Route::group(['middleware' => ['isAdministratie']], function() {
+        Route::controller(PackageController::class)->group(function() {
+            route::post('/packages', 'store');
+            route::put('/packages/{id}' , 'update');
+            route::delete('/packages/{id}', 'destroy');
+        });
+    });
 });
+
