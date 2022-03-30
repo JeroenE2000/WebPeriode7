@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Parcel;
 use Laravel\Scout\Searchable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
@@ -36,4 +37,10 @@ class Labels extends Model
             'Weight' => $this->Weight
         ];
     }
+
+    public function parcel() {
+        return $this->belongsTo(Parcel::class , 'label_id');
+    }
+
+
 }

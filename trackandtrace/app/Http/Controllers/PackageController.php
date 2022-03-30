@@ -2,76 +2,72 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Package;
+use App\Models\Labels;
+use App\Models\Parcels;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return Package::all();
+        $package = Parcels::find(1);
+        $test = $package->parcel_label;
+        dd($test);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        return Package::create($request->all());
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        return Package::find($id);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * All api functions
      */
-    public function update(Request $request, $id)
+    public function apiIndex()
     {
-        $package = Package::find($id);
+        return Parcels::all();
+    }
+
+    public function apiStore(Request $request)
+    {
+        return Parcels::create($request->all());
+    }
+
+    public function apiShow($id)
+    {
+        return Parcels::find($id);
+    }
+
+    public function apiUpdate(Request $request, $id)
+    {
+        $package = Parcels::find($id);
         $package->update($request->all());
         return $package;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function apiDestroy($id)
     {
-        Package::destroy($id);
-        return Package::all();
+        Parcels::destroy($id);
+        return Parcels::all();
     }
 }

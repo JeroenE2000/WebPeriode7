@@ -29,8 +29,8 @@ Route::controller(AuthApiController::class)->group(function() {
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::controller(PackageController::class)->group(function() {
-        route::get('/packages' , 'index');
-        route::get('/packages/{id}' , 'show');
+        route::get('/packages' , 'apiIndex');
+        route::get('/packages/{id}' , 'apiShow');
     });
     Route::controller(AuthApiController::class)->group(function() {
         route::post('/logout' , 'logout');
@@ -38,16 +38,16 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::group(['middleware' => ['isSuperAdmin']], function() {
         Route::controller(PackageController::class)->group(function() {
-            route::post('/packages', 'store');
-            route::put('/packages/{id}' , 'update');
-            route::delete('/packages/{id}', 'destroy');
+            route::post('/packages', 'apiStore');
+            route::put('/packages/{id}' , 'apiUpdate');
+            route::delete('/packages/{id}', 'apiDestroy');
         });
     });
     Route::group(['middleware' => ['isAdministratie']], function() {
         Route::controller(PackageController::class)->group(function() {
-            route::post('/packages', 'store');
-            route::put('/packages/{id}' , 'update');
-            route::delete('/packages/{id}', 'destroy');
+            route::post('/packages', 'apiStore');
+            route::put('/packages/{id}' , 'apiUpdate');
+            route::delete('/packages/{id}', 'apiDestroy');
         });
     });
 });

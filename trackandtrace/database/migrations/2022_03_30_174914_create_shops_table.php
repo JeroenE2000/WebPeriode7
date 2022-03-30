@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parcels', function (Blueprint $table) {
+        Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('deliveryservice');
-            $table->foreignId('label_id')->references('id')->on('labels')->onDelete('cascade');
-            $table->foreignId('parcel_status_id')->references('id')->on('parcel_statuses')->onDelete('cascade');
+            $table->string("name");
+            $table->string("streetname");
+            $table->string("streetnumber");
+            $table->string("postalcode");
+            $table->integer("KVKnummer");
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parcels');
+        Schema::dropIfExists('shops');
     }
 };

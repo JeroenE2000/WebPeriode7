@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PDFController;
 
 /*
@@ -28,11 +29,13 @@ Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.s
 
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
+    route::resource('/package' , PackageController::class);
     Route::get('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
 });
 
 Route::middleware(['isAdministratie'])->group(function() {
     Route::resource('/labels' , LabelController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update' , 'search']);
+    route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
 });
 
