@@ -15,7 +15,10 @@ class PDFController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Labels::find(array_keys($request->selectedvalue));
+        $request->validate([
+            'selectedvalue' => 'required|array',
+        ]);
+        $data = Labels::find($request->selectedvalue);
         $labels = ['title'=>'PrintLabels',
         'date'=>date('d/m/y'),
         'labels'=> $data];
@@ -24,5 +27,5 @@ class PDFController extends Controller
         return $pdf->download('PDF.pdf');
     }
 
-   
+
 }

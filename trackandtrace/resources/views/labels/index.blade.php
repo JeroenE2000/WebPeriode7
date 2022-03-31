@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 @if ($message = Session::get('success'))
@@ -14,20 +14,18 @@
                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                     <a class="btn btn-success" href="{{ route('labels.create') }}"> Nieuwe label aanmaken</a>
                 @endif
-                  <form method="POST" action="{{ route('labels.search') }}">
+                  <form method="POST" class="mt-4" action="{{ route('labels.search') }}">
                     @csrf
                     @method('put')
-                    <div class="col-md-6">
-                        <label for="search" class="col-md-4 col-form-label text-md-end">{{ __('Search function') }}</label>
+                    <div class="col-md-3">
                         <input value="{{ request()->get('search') }}" type="search" name="search" class="form-control"></input>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
 
                </div>
          </div>
       </div>
-      <div class="row">
+      <div class="row mt-4" >
          <div class="col-12 col-sm-12">
             <div class="card">
                <div class="card-header">
@@ -71,7 +69,7 @@
                                 <td>{{$l->Weight}}</td>
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <td><a class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
-                                    <td><input type="checkbox" name="selectedvalue[{{$l->id}}]pdf"/> </td>
+                                    <td><input type="checkbox" name="selectedvalue[]" value="{{$l->id}}"/> </td>
                                     @endif
                                 </tr>
                                 @endforeach

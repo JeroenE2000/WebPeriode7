@@ -53,6 +53,11 @@ class LabelController extends Controller
         return redirect()->route('labels.index')->with('success' , 'Label succesvol toegevoegd');
     }
 
+    public function show($id)
+    {
+        //
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

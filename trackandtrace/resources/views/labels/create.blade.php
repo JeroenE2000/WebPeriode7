@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -13,7 +13,7 @@
     </div>
 @endif
     <section class="content">
-        <div class="col-8 d-flex justify-content-center">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Labels aanmaken</h3>
@@ -32,6 +32,7 @@
                                 <th>Date</th>
                                 <th>Dimensions</th>
                                 <th>Weight</th>
+                                <th>Toevoegen</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,25 +49,13 @@
                             <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark" required></td>
                         </tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                               <td>trackingNumber</td>
-                               <td>Package_name</td>
-                               <td>Name_Sender</td>
-                               <td>Address_Sender</td>
-                               <td>Name_Reciever</td>
-                               <td>Address_Reciever</td>
-                               <td>Date</td>
-                               <td>Dimensions</td>
-                               <td>Weight</td>
-                            </tr>
-                         </tfoot>
+
                     </table>
                     <div class="d-grid mt-3">
-                      <input type="submit" class="btn btn-dark btn-block" value="Submit">
+                      <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
                 </form>
-                <div class="pull-right">
+                <div class="pull-right mt-3">
                     <a class="btn btn-primary" href="{{ route('labels.index') }}"> Back</a>
                 </div>
             </div>

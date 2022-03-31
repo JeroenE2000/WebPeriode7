@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('deliveryservice');
             $table->foreignId('labels_id')->references('id')->on('labels')->onDelete('cascade');
             $table->foreignId('shop_id')->references('id')->on('shops')->onDelete('cascade');
-            $table->foreignId('parcel_status_id')->references('id')->on('parcel_statuses')->onDelete('cascade');
+            $table->foreignId('parcel_status_id')->references('id')->on('parcel_status')->onDelete('cascade');
             $table->timestamps();
         });
     }

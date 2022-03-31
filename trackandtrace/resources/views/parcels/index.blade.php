@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -13,7 +13,7 @@
          <div class="col-lg-12 margin-tb">
                <div class="pull-right">
                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                    <a class="btn btn-success" href="{{ route('package.create') }}"> Nieuwe label aanmaken</a>
+                    <a class="btn btn-success" href="{{ route('package.create') }}"> Nieuwe pakket aanmaken</a>
                 @endif
                </div>
          </div>
@@ -32,7 +32,8 @@
                                 <tr>
                                     <th>id</th>
                                     <td>deleveryservice</td>
-                                    <td>label</td>
+                                    <td>Package name</td>
+                                    <td>Name sender</td>
                                     <td>shop</td>
                                     <td>status</td>
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
@@ -41,20 +42,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($parcels as $p)
+                                @foreach($package as $parcel)
                                 <tr>
-                                <td>{{$l->id}}</td>
-                                <td>{{$l->deliveryservice}}</td>
-                                <td>{{$l->Package_name}}</td>
-                                <td>{{$l->Name_Sender}}</td>
-                                <td>{{$l->Address_Sender}}</td>
-                                <td>{{$l->Name_Reciever}}</td>
-                                <td>{{$l->Address_Reciever}}</td>
-                                <td>{{$l->Date}}</td>
-                                <td>{{$l->Dimensions}}</td>
-                                <td>{{$l->Weight}}</td>
+                                <td>{{$parcel->id}}</td>
+                                <td>{{$parcel->deliveryservice}}</td>
+                                    @foreach($parcel->parcel_label as $p)
+                                        <td>{{$p->Package_name}}</td>
+                                        <td>{{$p->Name_Sender}}</td>
+                                    @endforeach
+                                    @foreach($parcel->shop as $s)
+                                        <td>{{$s->name}}</td>
+                                    @endforeach
+                                    @foreach($parcel->parcel_status as $st)
+                                        <td>{{$st->state}}</td>
+                                    @endforeach
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td><a class="btn btn-primary" href="{{ route('package.edit',$l) }}">Bijwerken</a></td>
+                                    <td><a class="btn btn-primary" href="{{ route('package.edit',$p) }}">Bijwerken</a></td>
                                 @endif
                                 </tr>
                                 @endforeach
@@ -63,7 +66,8 @@
                                 <tr>
                                     <th>id</th>
                                     <td>deleveryservice</td>
-                                    <td>label</td>
+                                    <td>Package name</td>
+                                    <td>Name sender</td>
                                     <td>shop</td>
                                     <td>status</td>
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)

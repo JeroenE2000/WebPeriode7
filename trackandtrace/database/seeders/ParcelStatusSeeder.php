@@ -15,22 +15,22 @@ class ParcelStatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('parcel_statuses')->insert([
+        DB::table('parcel_status')->insert([
             'state' => "Aangemeld",
         ]);
-        DB::table('parcel_statuses')->insert([
+        DB::table('parcel_status')->insert([
             'state' => "Uitgeprint",
         ]);
-        DB::table('parcel_statuses')->insert([
+        DB::table('parcel_status')->insert([
             'state' => "Afgeleverd",
         ]);
-        DB::table('parcel_statuses')->insert([
+        DB::table('parcel_status')->insert([
             'state' => "Sorteercentrum",
         ]);
-        DB::table('parcel_statuses')->insert([
+        DB::table('parcel_status')->insert([
             'state' => "Onderweg",
         ]);
-        DB::table('parcel_statuses')->insert([
+        DB::table('parcel_status')->insert([
             'state' => "Afgeleverd",
         ]);
     }

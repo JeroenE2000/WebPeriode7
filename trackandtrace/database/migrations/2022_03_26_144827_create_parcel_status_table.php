@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parcel_statuses', function (Blueprint $table) {
+        Schema::create('parcel_status', function (Blueprint $table) {
             $table->id();
             $table->string('state');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parcel_statuses');
+        Schema::dropIfExists('parcel_status');
     }
 };
