@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shops;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -13,7 +14,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $data = Shops::all();
+        return view('shops.index' ,['shops' => $data]);
     }
 
     /**
@@ -23,7 +25,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        return view('shops.create');
     }
 
     /**
@@ -34,7 +36,16 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'streetname' => 'required',
+            'streetnumber' => 'required',
+            'postalcode' => 'required',
+            'KVKnumber' => 'required',
+        ]);
+        Shops::create($request->all());
+
+        return redirect()->route('shops.index')->with('success' , 'Shop succesvol toegevoegd');
     }
 
     /**

@@ -87,7 +87,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{url('shops')}}" class="nav-link">
               <i class="nav-icon fas fa-store"></i>
               <p>Shops</p>
             </a>

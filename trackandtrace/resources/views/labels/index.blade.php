@@ -18,7 +18,7 @@
                     @csrf
                     @method('put')
                     <div class="col-md-3">
-                        <input value="{{ request()->get('search') }}" type="search" name="search" class="form-control"></input>
+                        <input value="{{ request()->get('search') }}" type="search" name="search" class="form-control">
                     </div>
                 </form>
 

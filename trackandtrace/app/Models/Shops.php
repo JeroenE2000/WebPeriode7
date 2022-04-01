@@ -9,7 +9,18 @@ class Shops extends Model
 {
     use HasFactory;
 
+
+    public $fillable = [
+        'name',
+        'streetname',
+        'streetnumber',
+        'postalcode',
+        'KVKnumber',
+    ];
+
     public function parcel() {
         return $this->hasMany(Parcel::class , 'id');
     }
+
+
 }

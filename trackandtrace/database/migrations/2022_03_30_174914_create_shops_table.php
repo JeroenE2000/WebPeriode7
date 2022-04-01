@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("streetname");
             $table->string("streetnumber");
             $table->string("postalcode");
-            $table->integer("KVKnummer");
+            $table->integer("KVKnumber");
             $table->timestamps();
         });
     }

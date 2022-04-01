@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +32,19 @@ Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
     route::resource('/package' , PackageController::class);
     Route::get('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
+    Route::resource('/shops' , ShopController::class);
 });
 
 Route::middleware(['isAdministratie'])->group(function() {
     Route::resource('/labels' , LabelController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update' , 'search']);
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
+    Route::resource('/shops' , ShopController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update']);
 });
 
 Route::middleware(['isInPakker'])->group(function() {
     Route::resource('/labels' , LabelController::class)->only(['index' , 'search']);
+    Route::resource('/shops' , ShopController::class)->only(['index']);
 });
 
 
