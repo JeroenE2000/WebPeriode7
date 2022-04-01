@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Labels;
+use App\Models\Parcels;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -19,6 +20,13 @@ class PDFController extends Controller
             'selectedvalue' => 'required|array',
         ]);
         $data = Labels::find($request->selectedvalue);
+        foreach ($request->selectedvalue as $key => $value) {
+            $parcels = Parcels::where('labels_id' , '=' , $value)->first();
+            if($parcels !== null) {
+                $parcels->parcel_status_id = 2;
+                $parcels->save();
+            }
+        }
         $labels = ['title'=>'PrintLabels',
         'date'=>date('d/m/y'),
         'labels'=> $data];

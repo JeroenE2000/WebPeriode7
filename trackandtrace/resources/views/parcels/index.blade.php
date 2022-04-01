@@ -42,22 +42,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($package as $parcel)
+                                @foreach($packages as $package)
                                 <tr>
-                                <td>{{$parcel->id}}</td>
-                                <td>{{$parcel->deliveryservice}}</td>
-                                    @foreach($parcel->parcel_label as $p)
-                                        <td>{{$p->Package_name}}</td>
-                                        <td>{{$p->Name_Sender}}</td>
-                                    @endforeach
-                                    @foreach($parcel->shop as $s)
-                                        <td>{{$s->name}}</td>
-                                    @endforeach
-                                    @foreach($parcel->parcel_status as $st)
-                                        <td>{{$st->state}}</td>
-                                    @endforeach
+                                <td>{{$package->id}}</td>
+                                <td><i class="nav-icon fas fa-truck"></i> {{$package->deliveryservice}}</td>
+                                <td><i class="nav-icon fas fa-box"></i> {{$package->parcel_label->Package_name}}</td>
+                                <td><i class="nav-icon fas fa-user"></i> {{$package->parcel_label->Name_Sender}}</td>
+                                <td><i class="nav-icon fas fa-store"></i> {{$package->shop->name}}</td>
+                                <td>{{$package->parcel_status->state}}</td>
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td><a class="btn btn-primary" href="{{ route('package.edit',$p) }}">Bijwerken</a></td>
+                                    <td><a class="btn btn-primary" href="{{ route('package.edit',$package->id) }}">Bijwerken</a></td>
                                 @endif
                                 </tr>
                                 @endforeach

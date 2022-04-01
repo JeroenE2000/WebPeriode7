@@ -10,6 +10,6 @@ class Shops extends Model
     use HasFactory;
 
     public function parcel() {
-        return $this->belongsTo(Parcel::class , 'shop_id');
+        return $this->hasMany(Parcel::class , 'id');
     }
 }

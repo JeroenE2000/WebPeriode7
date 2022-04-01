@@ -13,21 +13,21 @@ class Parcels extends Model
 
     public $fillable = [
         'deliveryservice',
-        'label_id',
+        'labels_id',
         'shop_id',
         'parcel_status_id',
     ];
 
     public function parcel_label() {
-       return $this->hasMany(Labels::class , 'id');
+       return $this->belongsTo(Labels::class , 'labels_id');
     }
 
     public function shop() {
-        return $this->hasMany(Shops::class , 'id');
+        return $this->belongsTo(Shops::class , 'shop_id');
     }
 
     public function parcel_status() {
-        return $this->hasMany(ParcelStatus::class , 'id');
+        return $this->belongsTo(ParcelStatus::class , 'parcel_status_id');
     }
 
 }

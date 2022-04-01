@@ -39,7 +39,7 @@ class Labels extends Model
     }
 
     public function parcel() {
-        return $this->belongsTo(Parcel::class , 'label_id');
+        return $this->hasMany(Parcel::class , 'id');
     }
 
 

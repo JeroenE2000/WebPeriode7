@@ -15,6 +15,6 @@ class ParcelStatus extends Model
     ];
 
     public function parcel() {
-        return $this->belongsTo(Parcel::class , 'parcel_status_id');
+        return $this->hasMany(Parcel::class , 'id');
     }
 }

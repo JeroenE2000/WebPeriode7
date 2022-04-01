@@ -10,8 +10,8 @@ class PackageController extends Controller
 {
     public function index()
     {
-        $package = Parcels::all();
-        return view('parcels.index' , compact('package'));
+        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status')->get();
+        return view('parcels.index' , compact('packages'));
     }
 
     public function store(Request $request)
