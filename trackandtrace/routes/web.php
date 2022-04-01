@@ -7,6 +7,7 @@ use App\Http\Controllers\LabelController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.s
 
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
+    Route::resource('/users', UserController::class)->only(['index' , 'edit' , 'update']);
     route::resource('/package' , PackageController::class);
     Route::get('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class);

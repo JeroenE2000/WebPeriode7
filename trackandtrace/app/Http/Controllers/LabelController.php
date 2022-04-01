@@ -67,7 +67,7 @@ class LabelController extends Controller
     public function edit($id)
     {
         $label = Labels::find($id);
-        return view('labels.update' , compact('label'));
+        return view('labels.edit' , compact('label'));
     }
 
     /**

@@ -92,6 +92,12 @@
               <p>Shops</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{url('users')}}" class="nav-link">
+              <i class="nav-icon ion ion-person"></i>
+              <p>users</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

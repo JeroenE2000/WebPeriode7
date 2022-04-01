@@ -14,9 +14,20 @@ class PackageController extends Controller
         return view('parcels.index' , compact('packages'));
     }
 
+    public function create()
+    {
+        return view('parcels.create');
+    }
+
     public function store(Request $request)
     {
-
+        $request->validate([
+            'deliveryservice' => 'required|string',
+            'labels_id' => 'required|integer',
+            'shop_id' => 'required|integer',
+            'parcel_status_id' => 'required|integer',
+        ]);
+        return Parcels::create($request->all());
     }
 
     public function show($id)
@@ -38,18 +49,13 @@ class PackageController extends Controller
     {
 
     }
-
+    
     /**
      * All api functions
      */
     public function apiIndex()
     {
         return Parcels::all();
-    }
-
-    public function apiStore(Request $request)
-    {
-        return Parcels::create($request->all());
     }
 
     public function apiShow($id)
@@ -59,6 +65,12 @@ class PackageController extends Controller
 
     public function apiUpdate(Request $request, $id)
     {
+        $request->validate([
+            'deliveryservice' => 'required|string',
+            'labels_id' => 'required|integer',
+            'shop_id' => 'required|integer',
+            'parcel_status_id' => 'required|integer',
+        ]);
         $package = Parcels::find($id);
         $package->update($request->all());
         return $package;

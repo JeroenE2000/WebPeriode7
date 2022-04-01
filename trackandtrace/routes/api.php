@@ -38,14 +38,14 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::group(['middleware' => ['isSuperAdmin']], function() {
         Route::controller(PackageController::class)->group(function() {
-            route::post('/packages', 'apiStore');
+            route::post('/packages', 'store');
             route::put('/packages/{id}' , 'apiUpdate');
             route::delete('/packages/{id}', 'apiDestroy');
         });
     });
     Route::group(['middleware' => ['isAdministratie']], function() {
         Route::controller(PackageController::class)->group(function() {
-            route::post('/packages', 'apiStore');
+            route::post('/packages', 'store');
             route::put('/packages/{id}' , 'apiUpdate');
             route::delete('/packages/{id}', 'apiDestroy');
         });
