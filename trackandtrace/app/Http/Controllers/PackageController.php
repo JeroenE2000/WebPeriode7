@@ -27,6 +27,12 @@ class PackageController extends Controller
             'shop_id' => 'required|integer',
             'parcel_status_id' => 'required|integer',
         ]);
+        $parcels = Parcels::all();
+        foreach ($parcels as $key => $value) {
+            if($value->labels_id == $request->input('labels_id')) {
+                return response("Label is al gekoppeld aan pakket", 403);
+            }
+        }
         return Parcels::create($request->all());
     }
 
@@ -49,7 +55,7 @@ class PackageController extends Controller
     {
 
     }
-    
+
     /**
      * All api functions
      */
