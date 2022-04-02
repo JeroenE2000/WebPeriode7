@@ -54,4 +54,7 @@ class User extends Authenticatable
      {
          return $this->hasMany(Parcels::class , 'id');
      }
+     public function reviews() {
+        return $this->belongsToMany(Review::class , 'id');
+    }
 }

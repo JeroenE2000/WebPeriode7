@@ -8,6 +8,7 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::middleware(['isSuperAdmin'])->group(function() {
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class);
+    Route::resource('/reviews' , ReviewController::class);
 });
 
 Route::middleware(['isAdministratie'])->group(function() {
@@ -53,6 +55,8 @@ Route::middleware(['isAdministratie'])->group(function() {
 
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
+    Route::resource('/shops' , ShopController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update']);
+    Route::resource('/reviews' , ReviewController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update']);
 });
 
 Route::middleware(['isInPakker'])->group(function() {
