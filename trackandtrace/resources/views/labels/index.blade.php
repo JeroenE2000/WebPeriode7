@@ -13,6 +13,7 @@
                <div class="pull-right">
                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                     <a class="btn btn-success" href="{{ route('labels.create') }}"> Nieuwe label aanmaken</a>
+                    <a class="btn btn-success" href="{{ route('label.csvimport') }}"> Csv Import</a>
                 @endif
                   <form method="POST" class="mt-4" action="{{ route('labels.search') }}">
                     @csrf

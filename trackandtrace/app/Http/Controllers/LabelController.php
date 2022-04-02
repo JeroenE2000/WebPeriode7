@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Labels;
+use App\Imports\LabelImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LabelController extends Controller
 {
@@ -21,6 +23,7 @@ class LabelController extends Controller
             return view('labels.index' ,['labels' => $data]);
         }
         $data = Labels::all();
+
         return view('labels.index' ,['labels' => $data]);
     }
 
@@ -39,8 +42,19 @@ class LabelController extends Controller
         return view('labels.create');
     }
 
-    public function csvImport() {
-        
+    public function fileImportExport() {
+        return view('labels.import');
+    }
+
+    public function fileImport(Request $request) {
+        Excel::import(new LabelImport, $request->file('file')->store('temp'));
+        $user = Auth::user();
+        if($user->role_id !== 1) {
+            $data = Labels::where('shop_id' , '=' , $user->shop_id)->get();
+            return view('labels.index' ,['labels' => $data]);
+        }
+        $data = Labels::all();
+        return view('labels.index' ,['labels' => $data]);
     }
 
     /**
