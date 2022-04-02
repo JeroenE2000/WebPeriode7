@@ -69,7 +69,12 @@ class PackageController extends Controller
      */
     public function apiIndex()
     {
-        return Parcels::all();
+        $user = Auth::user();
+        if($user->role_id !== 1) {
+            $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('shop_id', '=' , $user->shop_id)->get();
+            return $packages;
+        }
+        return Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->get();
     }
 
     public function apiShow($id)

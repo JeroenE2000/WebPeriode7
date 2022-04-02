@@ -28,6 +28,7 @@ Route::controller(AuthApiController::class)->group(function() {
 
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']], function() {
+
     Route::controller(PackageController::class)->group(function() {
         route::get('/packages' , 'apiIndex');
         route::get('/packages/{id}' , 'apiShow');
