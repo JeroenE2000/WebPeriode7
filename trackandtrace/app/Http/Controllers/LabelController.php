@@ -19,11 +19,10 @@ class LabelController extends Controller
     {
         $user = Auth::user();
         if($user->role_id !== 1) {
-            $data = Labels::where('shop_id' , '=' , $user->shop_id)->get();
+            $data = Labels::where('shop_id' , '=' , $user->shop_id)->sortable()->paginate(5);
             return view('labels.index' ,['labels' => $data]);
         }
-        $data = Labels::all();
-
+        $data = Labels::sortable()->paginate(5);
         return view('labels.index' ,['labels' => $data]);
     }
 
