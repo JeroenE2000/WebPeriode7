@@ -14,6 +14,7 @@
                <div class="pull-right">
                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                     <a class="btn btn-success" href="{{ route('package.create') }}"> Nieuwe pakket aanmaken</a>
+                    <a class="btn btn-success" href="{{ route('package.csvimport') }}"> Csv Import</a>
                 @endif
                </div>
          </div>

@@ -38,6 +38,9 @@ Route::middleware(['isSuperAdmin'])->group(function() {
     Route::get('/labels/import/labels', [LabelController::class, 'fileImportExport'])->name('label.csvimport');
     Route::post('/labels/labels-import' , [LabelController::class,'fileImport'])->name('label.import');
 
+    Route::get('/package/import/package', [PackageController::class, 'fileImportExport'])->name('package.csvimport');
+    Route::post('/package/package-import' , [PackageController::class,'fileImport'])->name('package.import');
+
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class);
@@ -50,6 +53,9 @@ Route::middleware(['isAdministratie'])->group(function() {
 
     Route::get('/labels/import/labels', [LabelController::class, 'fileImportExport'])->name('label.csvimport');
     Route::post('/labels/labels-import' , [LabelController::class,'fileImport'])->name('label.import');
+
+    Route::get('/package/import/package', [PackageController::class, 'fileImportExport'])->name('package.csvimport');
+    Route::post('/package/package-import' , [PackageController::class,'fileImport'])->name('package.import');
 
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
