@@ -74,6 +74,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+          @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2 || auth()->user()->role_id == 3)
           <li class="nav-item">
             <a href="{{url('labels')}}" class="nav-link">
               <i class="nav-icon far fa fa-tag"></i>
@@ -92,12 +93,15 @@
               <p>Shops</p>
             </a>
           </li>
+          @endif
+          @if(auth()->user()->role_id == 1)
           <li class="nav-item">
             <a href="{{url('users')}}" class="nav-link">
               <i class="nav-icon ion ion-person"></i>
               <p>users</p>
             </a>
           </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
