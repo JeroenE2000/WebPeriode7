@@ -33,7 +33,8 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('reviews.create');
+        $user = Auth::user();
+        return view('reviews.create', compact('user'));
     }
 
     /**
@@ -44,7 +45,15 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'stars' => 'required',
+            'description' => 'required',
+            'user_id' => 'required',
+            'shop_id' => 'nullable',
+        ]);
+        Review::create($request->all());
+
+        return redirect()->route('reviews.index')->with('success' , 'Review succesvol toegevoegd');
     }
 
     /**

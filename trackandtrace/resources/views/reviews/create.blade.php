@@ -13,8 +13,17 @@
     </div>
 @endif
 <section class="content">
-    <div class="rating">
-        <input>
-    </div>
+    <form action="{{ route('labels.store') }}" method="POST">
+        @csrf
+        <input type="number" name="user_id" class="form-control" hidden value="{{$user->id}}"/>
+        {{-- <input type="number" name="shop_id" class="form-control" hidden value="{{$shop}}"/> --}}
+            <p>Stars</p>
+            <input type="number" step="0.1" name="stars" class="form-control" required/>
+            <p>Description</p>
+            <input type="text" name="description" class="form-control" required/>
+            <div class="d-grid mt-3">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+    </form>
 </section>
 @endsection
