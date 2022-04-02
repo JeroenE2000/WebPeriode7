@@ -31,5 +31,7 @@ class Shops extends Model
         return $this->belongsTo(Labels::class , 'label_id');
     }
 
-
+    public function reviews() {
+        return $this->belongsToMany(Review::class , 'id');
+    }
 }
