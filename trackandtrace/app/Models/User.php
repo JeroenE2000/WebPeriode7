@@ -20,6 +20,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'shop_id'
     ];
 
     /**
@@ -43,5 +44,14 @@ class User extends Authenticatable
 
     public function roles() {
         return $this->belongsTo(Role::class , 'role_id');
+     }
+
+    public function shop() {
+        return $this->belongsTo(Shops::class , 'shop_id');
+     }
+
+     public function package()
+     {
+         return $this->hasMany(Parcels::class , 'id');
      }
 }

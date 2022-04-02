@@ -87,6 +87,8 @@
               <p>Packages</p>
             </a>
           </li>
+          @endif
+          @if(auth()->user()->role_id == 1)
           <li class="nav-item">
             <a href="{{url('shops')}}" class="nav-link">
               <i class="nav-icon fas fa-store"></i>

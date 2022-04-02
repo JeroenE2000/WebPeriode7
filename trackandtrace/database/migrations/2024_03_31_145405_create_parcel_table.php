@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
             $table->string('deliveryservice');
-            $table->foreignId('labels_id')->references('id')->on('labels')->onDelete('cascade');
+            $table->foreignId('label_id')->references('id')->on('labels')->onDelete('cascade');
             $table->foreignId('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->foreignId('parcel_status_id')->references('id')->on('parcel_status')->onDelete('cascade');
+            $table->foreignId('receiver_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Labels;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LabelController extends Controller
 {
@@ -14,6 +15,11 @@ class LabelController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        if($user->role_id !== 1) {
+            $data = Labels::where('shop_id' , '=' , $user->shop_id)->get();
+            return view('labels.index' ,['labels' => $data]);
+        }
         $data = Labels::all();
         return view('labels.index' ,['labels' => $data]);
     }
@@ -25,6 +31,11 @@ class LabelController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        if($user->role_id !== 1) {
+            $shop = $user->shop_id;
+            return view('labels.create' , compact('shop'));
+       }
         return view('labels.create');
     }
 
@@ -36,6 +47,7 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'multiInput.*.TrackingNumber' => 'required',
             'multiInput.*.Package_name' => 'required',
@@ -45,7 +57,8 @@ class LabelController extends Controller
             'multiInput.*.Address_Reciever' => 'required',
             'multiInput.*.Date' => 'required',
             'multiInput.*.Dimensions' => 'required',
-            'multiInput.*.Weight' => 'required'
+            'multiInput.*.Weight' => 'required',
+            'multiInput.*.shop_id' => 'required',
         ]);
         foreach ($request->multiInput as $key => $value) {
             Labels::create($value);
@@ -121,6 +134,11 @@ class LabelController extends Controller
         $label = $request->input('search');
         if(empty($label)) {
             return redirect()->route('labels.index');
+        }
+        $user = Auth::user();
+        if($user->role_id !== 1) {
+            $data = Labels::search($request->search)->where('shop_id', $user->shop_id)->get();
+            return view('labels.index' ,['labels' => $data]);
         }
 
         $data = Labels::search($request->search)->get();

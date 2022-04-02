@@ -46,6 +46,12 @@
                             <td><input type="date" name="multiInput[0][Date]" class="form-control" required/></td>
                             <td><input type="text" name="multiInput[0][Dimensions]" class="form-control" required/></td>
                             <td><input type="number" name="multiInput[0][Weight]" class="form-control" required/></td>
+                            @if(auth()->user()->role_id !== 1)
+                            <td><input type="number" name="multiInput[0][shop_id]" class="form-control" hidden value="{{$shop}}"/></td>
+                            @endif
+                            @if(auth()->user()->role_id === 1)
+                            <td><input type="number" name="multiInput[0][shop_id]" class="form-control"/></td>
+                            @endif
                             <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark" required></td>
                         </tr>
                         </tbody>
@@ -65,7 +71,7 @@
         var i = 0;
         $("#addRemoveIp").click(function () {
             ++i;
-            $("#multiForm").append('<tr><td><input type="number" name="multiInput['+i+'][TrackingNumber]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Package_name]" class="form-control" required /></td><td><input type="text" name="multiInput['+i+'][Name_Sender]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Address_Sender]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Name_Reciever]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Address_Reciever]" class="form-control" required/></td><td><input type="date" name="multiInput['+i+'][Date]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Dimensions]" class="form-control" required/></td><td><input type="number" name="multiInput['+i+'][Weight]" class="form-control" required/></td><td><button type="button" class="remove-item btn btn-danger">Delete</button></td></tr>');
+            $("#multiForm").append('<tr><td><input type="number" name="multiInput['+i+'][TrackingNumber]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Package_name]" class="form-control" required /></td><td><input type="text" name="multiInput['+i+'][Name_Sender]" class="form-control" required/> </td><td><input type="text" name="multiInput['+i+'][Address_Sender]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Name_Reciever]" class="form-control" required/></td> <td><input type="text" name="multiInput['+i+'][Address_Reciever]" class="form-control" required/></td><td><input type="date" name="multiInput['+i+'][Date]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Dimensions]" class="form-control" required/></td><td><input type="number" name="multiInput['+i+'][Weight]" class="form-control" required/></td> @if(auth()->user()->role_id !== 1)<td><input type="number" name="multiInput['+i+'][shop_id]" class="form-control" hidden value="{{$shop}}"/></td> @endif @if(auth()->user()->role_id === 1)<td><input type="number" name="multiInput['+i+'][shop_id]" class="form-control"/></td>@endif<td><button type="button" class="remove-item btn btn-danger">Delete</button></td></tr>');
         });
         $(document).on('click', '.remove-item', function () {
             $(this).parents('tr').remove();

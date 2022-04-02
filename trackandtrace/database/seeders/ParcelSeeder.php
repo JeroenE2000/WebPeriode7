@@ -17,22 +17,25 @@ class ParcelSeeder extends Seeder
     {
         DB::table('parcels')->insert([
             'deliveryservice' => "PostNL",
-            'labels_id' => '1',
+            'label_id' => '1',
             'shop_id' => "1",
+            'receiver_id' => "4",
             'parcel_status_id' => '5',
         ]);
 
         DB::table('parcels')->insert([
             'deliveryservice' => "DHL",
-            'labels_id' => '2',
+            'label_id' => '2',
             'shop_id' => "2",
+            'receiver_id' => "4",
             'parcel_status_id' => '5',
         ]);
 
         DB::table('parcels')->insert([
             'deliveryservice' => "Waardetransport Extra Beveiligd",
-            'labels_id' => '3',
+            'label_id' => '3',
             'shop_id' => "3",
+            'receiver_id' => "4",
             'parcel_status_id' => '6',
         ]);
     }

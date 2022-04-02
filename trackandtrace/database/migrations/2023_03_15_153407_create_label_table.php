@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('labels', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('shop_id')->nullable()->references('id')->on('shops')->onDelete('cascade');
             $table->integer("TrackingNumber");
             $table->string('Package_name');
             $table->string('Name_Sender');

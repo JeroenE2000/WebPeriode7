@@ -45,12 +45,10 @@ Route::middleware(['isAdministratie'])->group(function() {
     Route::resource('/labels' , LabelController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update' , 'search']);
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
-    Route::resource('/shops' , ShopController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update']);
 });
 
 Route::middleware(['isInPakker'])->group(function() {
     Route::resource('/labels' , LabelController::class)->only(['index' , 'search']);
-    Route::resource('/shops' , ShopController::class)->only(['index']);
 });
 
 

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Parcel;
 use Laravel\Scout\Searchable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +12,7 @@ class Labels extends Model
     use HasFactory , Searchable , HasApiTokens;
 
     public $fillable = [
+        'shop_id',
         'TrackingNumber',
         'Package_name',
         'Name_Sender',
@@ -40,6 +40,10 @@ class Labels extends Model
 
     public function parcel() {
         return $this->hasMany(Parcels::class , 'id');
+    }
+
+    public function shop() {
+        return $this->hasMany(Shops::class , 'shop_id');
     }
 
 

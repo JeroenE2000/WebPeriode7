@@ -36,6 +36,7 @@
                                     <td>Name sender</td>
                                     <td>shop</td>
                                     <td>status</td>
+                                    <td>Naam ontvanger</td>
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <td>Bijwerken</td>
                                     @endif
@@ -50,6 +51,7 @@
                                 <td><i class="nav-icon fas fa-user"></i> {{$package->parcel_label->Name_Sender}}</td>
                                 <td><i class="nav-icon fas fa-store"></i> {{$package->shop->name}}</td>
                                 <td>{{$package->parcel_status->state}}</td>
+                                <td>{{$package->receiver->name}}</td>
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <td><a class="btn btn-primary" href="{{ route('package.edit',$package->id) }}">Bijwerken</a></td>
                                 @endif

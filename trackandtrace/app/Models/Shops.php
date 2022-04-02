@@ -22,5 +22,14 @@ class Shops extends Model
         return $this->hasMany(Parcel::class , 'id');
     }
 
+    public function user() {
+        return $this->hasMany(User::class , 'id');
+    }
+
+    public function label()
+    {
+        return $this->belongsTo(Labels::class , 'label_id');
+    }
+
 
 }

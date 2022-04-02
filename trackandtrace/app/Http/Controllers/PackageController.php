@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Labels;
 use App\Models\Parcels;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PackageController extends Controller
 {
     public function index()
     {
-        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status')->get();
+        $user = Auth::user();
+        if($user->role_id !== 1) {
+            $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->get();
+            return view('parcels.index' , compact('packages'));
+        }
+        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('shop_id', '=' , $user->shop_id)->get();
         return view('parcels.index' , compact('packages'));
     }
 
@@ -23,9 +29,10 @@ class PackageController extends Controller
     {
         $request->validate([
             'deliveryservice' => 'required|string',
-            'labels_id' => 'required|integer',
+            'label_id' => 'required|integer',
             'shop_id' => 'required|integer',
             'parcel_status_id' => 'required|integer',
+            'receiver_id' => 'required|integer',
         ]);
         $parcels = Parcels::all();
         foreach ($parcels as $key => $value) {
@@ -33,6 +40,7 @@ class PackageController extends Controller
                 return response("Label is al gekoppeld aan pakket", 403);
             }
         }
+
         return Parcels::create($request->all());
     }
 
