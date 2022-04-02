@@ -55,6 +55,9 @@
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <td><a class="btn btn-primary" href="{{ route('package.edit',$package->id) }}">Bijwerken</a></td>
                                 @endif
+                                @if(auth()->user()->role_id == 4)
+                                <td><a class="btn btn-primary" href="{{ route('review.create',$package) }}">Review geven</a></td>
+                                @endif
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -68,6 +71,9 @@
                                     <td>status</td>
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <td>Bijwerken</td>
+                                    @endif
+                                    @if(auth()->user()->role_id == 4)
+                                    <td>Review geven</td>
                                     @endif
                                 </tr>
                             </tfoot>

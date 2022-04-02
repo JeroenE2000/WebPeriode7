@@ -13,10 +13,10 @@
     </div>
 @endif
 <section class="content">
-    <form action="{{ route('labels.store') }}" method="POST">
+    <form action="{{ route('review.store') }}" method="POST">
         @csrf
         <input type="number" name="user_id" class="form-control" hidden value="{{$user->id}}"/>
-        {{-- <input type="number" name="shop_id" class="form-control" hidden value="{{$shop}}"/> --}}
+        <input type="text" name="shop_id" class="form-control" hidden value="{{$package->shop_id}}"/>
             <p>Stars</p>
             <input type="number" step="0.1" name="stars" class="form-control" required/>
             <p>Description</p>

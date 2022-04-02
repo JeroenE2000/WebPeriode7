@@ -78,13 +78,14 @@
               <p>Labels</p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a href="{{url('package')}}" class="nav-link">
               <i class="nav-icon fas fa-box"></i>
               <p>Packages</p>
             </a>
           </li>
-          @endif
+
           @if(auth()->user()->role_id == 1)
           <li class="nav-item">
             <a href="{{url('shops')}}" class="nav-link">

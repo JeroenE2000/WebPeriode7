@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parcels;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,12 +18,14 @@ class ReviewController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if($user->role_id !== 1) {
-            $data = Review::where('shop_id' , '=' , $user->shop_id)->get();
-            return view('reviews.index' ,['reviews' => $data]);
+        $review = Review::all();
+        foreach($review as $r) {
+            if($user->shop_id == $r->shop_id) {
+                $data = Review::where('shop_id' , '=' , $user->shop_id)->get();
+                return view('reviews.index' ,['reviews' => $data]);
+            }
         }
-        $data = Review::all();
-
+        $data = Review::where('user_id' , '=' , $user->id)->get();
         return view('reviews.index' ,['reviews' => $data]);
     }
 
@@ -31,10 +34,11 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($packageId)
     {
+        $package = Parcels::find($packageId);
         $user = Auth::user();
-        return view('reviews.create', compact('user'));
+        return view('reviews.create', compact('user' , 'package'));
     }
 
     /**

@@ -65,7 +65,6 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'multiInput.*.TrackingNumber' => 'required',
             'multiInput.*.Package_name' => 'required',

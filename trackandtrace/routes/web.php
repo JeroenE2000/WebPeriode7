@@ -30,9 +30,6 @@ Auth::routes();
 Route::resource('/home', HomeController::class)->only(['index']);
 Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
 
-Route::middleware(['isReceiver'])->group(function() {
-   Route::resource('/package' , PackageController::class);
-});
 
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
@@ -44,7 +41,8 @@ Route::middleware(['isSuperAdmin'])->group(function() {
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class);
-    Route::resource('/reviews' , ReviewController::class);
+    Route::resource('/reviews' , ReviewController::class)->except(['create' , 'store']);
+
 });
 
 Route::middleware(['isAdministratie'])->group(function() {
@@ -56,11 +54,21 @@ Route::middleware(['isAdministratie'])->group(function() {
     route::resource('/package' , PackageController::class);
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update']);
-    Route::resource('/reviews' , ReviewController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update']);
+    Route::resource('/reviews' , ReviewController::class)->except(['create' , 'store']);
+
 });
 
 Route::middleware(['isInPakker'])->group(function() {
     Route::resource('/labels' , LabelController::class)->only(['index' , 'search']);
 });
+
+Route::middleware(['isReceiver'])->group(function() {
+    Route::resource('/package' , PackageController::class)->only(['index']);
+    Route::resource('/reviews' , ReviewController::class)->except(['create' , 'store']);
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('reviews/{package}/review' , 'create')->name('review.create');
+        Route::post('reviews/postreview' , 'store')->name('review.store');
+    });
+ });
 
 
