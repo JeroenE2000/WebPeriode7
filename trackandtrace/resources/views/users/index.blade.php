@@ -23,29 +23,23 @@
                          <table id="" class="table table-bordered table-hover">
                              <thead>
                                  <tr>
-                                 <th>id</th>
-                                 <td>name</td>
-                                 <td>streetname</td>
-                                 <td>streetnumber</td>
-                                 <td>postalcode</td>
-                                 <td>KVKnumber</td>
-                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                 <td>Bijwerken</td>
-                                 @endif
+                                    <td>role</td>
+                                    <td>name</td>
+                                    <td>email</td>
+                                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                    <td>Bijwerken</td>
+                                    @endif
                                  </tr>
                              </thead>
                              <tbody>
-                                 @foreach($shops as $s)
+                                 @foreach($users as $u)
                                  <tr>
-                                 <td>{{$s->id}}</td>
-                                 <td>{{$s->name}}</td>
-                                 <td>{{$s->streetname}}</td>
-                                 <td>{{$s->streetnumber}}</td>
-                                 <td>{{$s->postalcode}}</td>
-                                 <td>{{$s->KVKnumber}}</td>
-                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                     <td><a class="btn btn-primary" href="{{ route('shops.edit',$s) }}">Bijwerken</a></td>
-                                     @endif
+                                    <td>{{$u->roles->name}}</td>
+                                    <td>{{$u->name}}</td>
+                                    <td>{{$u->email}}</td>
+                                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                        <td><a class="btn btn-primary" href="{{ route('users.edit',$u) }}">Bijwerken</a></td>
+                                        @endif
                                  </tr>
                                  @endforeach
                              </tbody>

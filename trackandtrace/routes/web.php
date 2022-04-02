@@ -7,6 +7,7 @@ use App\Http\Controllers\LabelController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\ShopController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -28,10 +29,15 @@ Auth::routes();
 Route::resource('/home', HomeController::class)->only(['index']);
 Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
 
+Route::middleware(['isReceiver'])->group(function() {
+   Route::resource('/package' , PackageController::class);
+});
+
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
+    Route::resource('/users', UserController::class)->only(['index' , 'edit' , 'update']);
     route::resource('/package' , PackageController::class);
-    Route::get('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
+    Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class);
 });
 

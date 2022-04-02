@@ -14,9 +14,26 @@ class PackageController extends Controller
         return view('parcels.index' , compact('packages'));
     }
 
+    public function create()
+    {
+        return view('parcels.create');
+    }
+
     public function store(Request $request)
     {
-
+        $request->validate([
+            'deliveryservice' => 'required|string',
+            'labels_id' => 'required|integer',
+            'shop_id' => 'required|integer',
+            'parcel_status_id' => 'required|integer',
+        ]);
+        $parcels = Parcels::all();
+        foreach ($parcels as $key => $value) {
+            if($value->labels_id == $request->input('labels_id')) {
+                return response("Label is al gekoppeld aan pakket", 403);
+            }
+        }
+        return Parcels::create($request->all());
     }
 
     public function show($id)
@@ -47,11 +64,6 @@ class PackageController extends Controller
         return Parcels::all();
     }
 
-    public function apiStore(Request $request)
-    {
-        return Parcels::create($request->all());
-    }
-
     public function apiShow($id)
     {
         return Parcels::find($id);
@@ -59,6 +71,12 @@ class PackageController extends Controller
 
     public function apiUpdate(Request $request, $id)
     {
+        $request->validate([
+            'deliveryservice' => 'required|string',
+            'labels_id' => 'required|integer',
+            'shop_id' => 'required|integer',
+            'parcel_status_id' => 'required|integer',
+        ]);
         $package = Parcels::find($id);
         $package->update($request->all());
         return $package;
