@@ -22,7 +22,7 @@ class PDFController extends Controller
         ]);
         $data = Parcels::with('parcel_label' , 'shop' , 'parcel_status')->get()->find($request->selectedvalue);
         foreach ($request->selectedvalue as $key => $value) {
-            $parcels = Parcels::where('labels_id' , '=' , $value)->first();
+            $parcels = Parcels::where('label_id' , '=' , $value)->first();
             if($parcels !== null) {
                 $parcels->parcel_status_id = 2;
                 $parcels->save();

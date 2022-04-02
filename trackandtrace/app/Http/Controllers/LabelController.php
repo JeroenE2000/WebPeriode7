@@ -39,6 +39,10 @@ class LabelController extends Controller
         return view('labels.create');
     }
 
+    public function csvImport() {
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
