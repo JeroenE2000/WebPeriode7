@@ -83,22 +83,6 @@ class PackageController extends Controller
         }
         return view('parcels.search');
     }
-
-    public function edit($id)
-    {
-
-    }
-
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    public function destroy($id)
-    {
-
-    }
-
     /**
      * All api functions
      */

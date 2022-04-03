@@ -11,16 +11,6 @@ use Carbon\Carbon;
 class PickUpController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -53,16 +43,5 @@ class PickUpController extends Controller
         $parcel->save();
         return redirect()->route('package.index')->with('success' , 'package bezorgtijd toegevoegd');
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 }

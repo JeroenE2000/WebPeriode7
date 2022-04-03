@@ -65,26 +65,21 @@ class LabelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'multiInput.*.TrackingNumber' => 'required',
-            'multiInput.*.Package_name' => 'required',
-            'multiInput.*.Name_Sender' => 'required',
-            'multiInput.*.Address_Sender' => 'required',
+            'multiInput.*.TrackingNumber' => 'required|integer',
+            'multiInput.*.Package_name' => 'required|string',
+            'multiInput.*.Name_Sender' => 'required|string',
+            'multiInput.*.Address_Sender' => 'required|regex:/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i',
             'multiInput.*.Name_Reciever' => 'required',
-            'multiInput.*.Address_Reciever' => 'required',
-            'multiInput.*.Date' => 'required',
-            'multiInput.*.Dimensions' => 'required',
-            'multiInput.*.Weight' => 'required',
-            'multiInput.*.shop_id' => 'required',
+            'multiInput.*.Address_Reciever' => 'required|regex:/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i',
+            'multiInput.*.Date' => 'required|date',
+            'multiInput.*.Dimensions' => 'required|string',
+            'multiInput.*.Weight' => 'required|integer',
+            'multiInput.*.shop_id' => 'required|integer',
         ]);
         foreach ($request->multiInput as $key => $value) {
             Labels::create($value);
         }
         return redirect()->route('labels.index')->with('success' , 'Label succesvol toegevoegd');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -109,15 +104,15 @@ class LabelController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'TrackingNumber' => 'required',
-            'Package_name' => 'required',
-            'Name_Sender' => 'required',
-            'Address_Sender' => 'required',
+            'TrackingNumber' => 'required|integer',
+            'Package_name' => 'required|string',
+            'Name_Sender' => 'required|string',
+            'Address_Sender' => 'required|regex:/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i',
             'Name_Reciever' => 'required',
-            'Address_Reciever' => 'required',
-            'Date' => 'required',
-            'Dimensions' => 'required',
-            'Weight' => 'required'
+            'Address_Reciever' => 'required|regex:/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i',
+            'Date' => 'required|date',
+            'Dimensions' => 'required|string',
+            'Weight' => 'required|integer'
         ]);
 
         $label = Labels::find($id);
@@ -133,17 +128,6 @@ class LabelController extends Controller
 
         $label->update();
         return redirect()->route('labels.index')->with('success' , 'Label updated');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function search(Request $request) {
