@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col">
                 <div>
-                    <h2>Shop name: {{$label->shop->name}}</h2>
+                    <h2>{{__('labels.shopname')}} : {{$label->shop->name}}</h2>
                     <p>{{ $date }}</p>
                 </div>
             </div>
@@ -41,11 +41,11 @@
             <div class="table-responsive">
                 <table class="table table-condesed">
                     <tr class="thead">
-                        <td class="no-line"><strong>Tracking nummer</strong></td>
-                        <td class="text-left no-line"><strong>Paket naam</strong></td>
-                        <td class="text-center no-line"><strong>Zender naam</strong></td>
-                        <td class="text-center no-line"><strong>Adress zender</strong></td>
-                        <td class="text-center no-line"><strong>Naam ontvanger </strong></td>
+                        <td class="no-line"><strong>{{__('labels.trackingNumber')}}</strong></td>
+                        <td class="text-left no-line"><strong>{{__('labels.packagename')}}</strong></td>
+                        <td class="text-center no-line"><strong>{{__('labels.namesender')}}</strong></td>
+                        <td class="text-center no-line"><strong>{{__('labels.addresssender')}}</strong></td>
+                        <td class="text-center no-line"><strong>{{__('labels.recievername')}}</strong></td>
                     </tr>
                     <tbody>
                         <tr>

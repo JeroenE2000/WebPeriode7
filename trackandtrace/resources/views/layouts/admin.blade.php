@@ -56,12 +56,12 @@
 
         <div class="info">
             <a href="" class="d-block">
-                <i class="ion ion-person" style="font-size: 16px"></i> Welkom {{ Auth::user()->name }}</i>
+                <i class="ion ion-person" style="font-size: 16px"></i> {{__('admin.welcome')}} {{ Auth::user()->name }}</i>
             </a>
             <p></p>
 
             <a href="{{ route('logout') }}"   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="d-block">
-                <i class="ion-log-out" style="font-size: 16px"></i> Uitloggen</i>
+                <i class="ion-log-out" style="font-size: 16px"></i> {{__('admin.logout')}}</i>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
@@ -76,14 +76,14 @@
           <li class="nav-item">
             <a href="{{url('labels')}}" class="nav-link">
               <i class="nav-icon far fa fa-tag"></i>
-              <p>Labels</p>
+              <p>{{__('admin.label')}}</p>
             </a>
           </li>
           @endif
           <li class="nav-item">
             <a href="{{url('package')}}" class="nav-link">
               <i class="nav-icon fas fa-box"></i>
-              <p>Packages</p>
+              <p>{{__('admin.package')}}</p>
             </a>
           </li>
 
@@ -91,7 +91,7 @@
           <li class="nav-item">
             <a href="{{url('shops')}}" class="nav-link">
               <i class="nav-icon fas fa-store"></i>
-              <p>Shops</p>
+              <p>{{__('admin.shops')}}</p>
             </a>
           </li>
           @endif
@@ -99,14 +99,14 @@
           <li class="nav-item">
             <a href="{{url('users')}}" class="nav-link">
               <i class="nav-icon ion ion-person"></i>
-              <p>users</p>
+              <p>{{__('admin.users')}}</p>
             </a>
           </li>
           @endif
           <li class="nav-item">
             <a href="{{url('reviews')}}" class="nav-link">
               <i class="nav-icon ion ion-person"></i>
-              <p>Reviews</p>
+              <p>{{__('admin.review')}}</p>
             </a>
           </li>
         </ul>

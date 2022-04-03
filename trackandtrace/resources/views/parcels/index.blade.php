@@ -22,7 +22,7 @@
          <div class="col-12 col-sm-12">
             <div class="card">
                <div class="card-header">
-                  <h3 class="card-title">Packages</h3>
+                  <h3 class="card-title">{{__('parcels.packages')}}</h3>
                </div>
                <!-- /.card-header -->
                     @csrf
@@ -31,7 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <td>@sortablelink('deliveryservice' , 'deleveryservice')</td>
+                                    <td>@sortablelink('deliveryservice')</td>
                                     <td>@sortablelink('parcel_label.Package_name' , 'package name')</td>
                                     <td>@sortablelink('parcel_label.Name_sender' , 'name sender')</td>
                                     <td>@sortablelink('shop.name' , 'shop')</td>
@@ -72,17 +72,17 @@
                             <tfoot>
                                 <tr>
                                     <th>id</th>
-                                    <td>deleveryservice</td>
-                                    <td>Package name</td>
-                                    <td>Name sender</td>
-                                    <td>shop</td>
-                                    <td>status</td>
-                                    <td>customer name</td>
+                                    <td>{{__('parcels.deliveryserivce')}}</td>
+                                    <td>{{__('parcels.packagename')}}</td>
+                                    <td>{{__('parcels.sendername')}}</td>
+                                    <td>{{__('parcels.shop')}}</td>
+                                    <td>{{__('parcels.status')}}</td>
+                                    <td>{{__('parcels.customername')}}</td>
                                     @if(auth()->user()->role_id == 4)
-                                    <td>Review geven</td>
+                                    <td>{{__('parcels.review')}}</td>
                                     @endif
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td>pickup time</td>
+                                    <td>{{__('parcels.pickuptime')}}</td>
                                     @endif
                                 </tr>
                             </tfoot>

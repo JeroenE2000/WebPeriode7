@@ -33,9 +33,9 @@
                                 <th>{{__('labels.dimensions')}}</th>
                                 <th>{{__('labels.weight')}}</th>
                                 @if(auth()->user()->role_id == 1)
-                                <th>shopID</th>
+                                <th>{{__('labels.shop')}}</th>
                                 @endif
-                                <th>Toevoegen</th>
+                                <th>{{__('labels.create')}}</th>
                             </tr>
                         </thead>
                         <tbody>

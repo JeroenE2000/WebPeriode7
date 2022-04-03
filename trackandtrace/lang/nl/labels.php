@@ -30,7 +30,10 @@ return [
     'updateLabel' => 'Label is geupdate',
     'createlabelsheader' => 'Labels aanmaken',
     'dataImport' => 'Import data',
-    'updatelabelheader' => '',
+    'updatelabelheader' => 'Label bijwerken: ',
+    'create' => 'Toevoegen',
+    'shop' => 'ShopID',
+    'shopname' => 'Winkel naam',
 
 
 ];

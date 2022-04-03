@@ -5,7 +5,7 @@
         <div class="col-12 w-50 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Find your package</h3>
+                    <h3 class="card-title">{{__('parcels.searchpackage')}}</h3>
                 </div>
                 <form action="{{ route('parcels.status') }}" method="POST">
                     @csrf

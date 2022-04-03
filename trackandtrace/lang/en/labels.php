@@ -30,5 +30,9 @@ return [
     'updateLabel' => 'Label is updated',
     'createlabelsheader' => 'Add label',
     'dataImport' => 'Import data',
-    'updatelabelheader' => '',
+    'updatelabelheader' => 'Update label: ',
+    'create' => 'Add',
+    'shop' => 'ShopID',
+    'shopname' => 'Shop name',
+
 ];
