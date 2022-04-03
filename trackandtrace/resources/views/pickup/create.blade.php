@@ -15,6 +15,7 @@
 <section class="content">
     <form action="{{ route('pickup.store') }}" method="POST">
         @csrf
+        <input type="datetime" name="start_date" class="form-control" value="{{$dateCheck}}" hidden/>
         <input type="datetime-local" name="date" class="form-control" />
         <div class="d-grid mt-3">
             <input type="submit" class="btn btn-primary" value="Submit">

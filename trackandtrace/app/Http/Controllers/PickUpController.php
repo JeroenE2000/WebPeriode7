@@ -25,7 +25,12 @@ class PickUpController extends Controller
      */
     public function create($packageId)
     {
-        return view('pickup.create' , compact('packageId'));
+        $timeCheck = mktime(15,0 ,0);
+        $minusday = '+1 day';
+        $format = ('Y-m-d H:i:s');
+        $dateCheck = date($format , strtotime(date($format , $timeCheck).$minusday));
+
+        return view('pickup.create' , compact('packageId' , 'dateCheck'));
     }
 
     /**
@@ -36,24 +41,11 @@ class PickUpController extends Controller
      */
     public function store(Request $request)
     {
-        //datetime check now
-        $dateNow = Carbon::now();
-        $dateInput = $request->get('date');
-        $substract = $dateNow->diff($dateInput);
-        //substraction
-        dd($substract);
-        //1 day before 15:00
-        $timeCheck = mktime(15,0 ,0);
-        $minusday = '-1 day';
-        $format = ('Y-m-d H:i:s');
-        $dateCheck = date($format , strtotime(date($format , $timeCheck).$minusday));
-        //this is stupid thing dont work dont look at it
-        if($request->get('date') <= $dateCheck || $request->get('date') <= date('Y-m-d H:i:s') || $request->get('date') >= date('Y-m-d H:i:s')) {
-            dd($dateCheck);
-        }
         $request->validate([
-            'date' => 'required|before:'
+            'start_date' => 'required|',
+            'date' => 'required|after_or_equal:start_date'
         ]);
+        dd("hallo");
     }
 
     /**
