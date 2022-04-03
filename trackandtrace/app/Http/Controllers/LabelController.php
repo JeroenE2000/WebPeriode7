@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Labels;
+use Illuminate\Support\Facades\Lang;
 use App\Imports\LabelImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +80,7 @@ class LabelController extends Controller
         foreach ($request->multiInput as $key => $value) {
             Labels::create($value);
         }
-        return redirect()->route('labels.index')->with('success' , 'Label succesvol toegevoegd');
+        return redirect()->route('labels.index')->with('success' , Lang::get('labels.addLabel'));
     }
 
     /**
@@ -127,7 +128,7 @@ class LabelController extends Controller
         $label->Weight = $request->get('Weight');
 
         $label->update();
-        return redirect()->route('labels.index')->with('success' , 'Label updated');
+        return redirect()->route('labels.index')->with('success' , Lang::get('labels.updateLabel'));
     }
 
     public function search(Request $request) {

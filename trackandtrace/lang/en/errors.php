@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'previous' => 'Back',
-    'next' => 'Next',
+    'Whoops' => 'Whoops!',
+    'errorMessage' => 'There were some problems with your input.',
 
 ];

@@ -12,8 +12,8 @@
          <div class="col-lg-12 margin-tb">
                <div class="pull-right">
                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                    <a class="btn btn-success" href="{{ route('labels.create') }}"> Nieuwe label aanmaken</a>
-                    <a class="btn btn-success" href="{{ route('label.csvimport') }}"> Csv Import</a>
+                    <a class="btn btn-success" href="{{ route('labels.create') }}"> {{__('labels.btnlabelcreate')}}</a>
+                    <a class="btn btn-success" href="{{ route('label.csvimport') }}"> {{__('labels.csvimport')}}</a>
                 @endif
                   <form method="POST" class="mt-4" action="{{ route('labels.search') }}">
                     @csrf
@@ -40,18 +40,18 @@
                             <thead>
                                 <tr>
                                 <th>id</th>
-                                <td>trackingNumber</td>
-                                <td>Package_name</td>
-                                <td>Name_Sender</td>
-                                <td>Address_Sender</td>
-                                <td>Name_Reciever</td>
-                                <td>Address_Reciever</td>
-                                <td>Date</td>
-                                <td>Dimensions</td>
-                                <td>Weight</td>
+                                <td>{{__('labels.trackingNumber')}}</td>
+                                <td>{{__('labels.packagename')}}</td>
+                                <td>{{__('labels.namesender')}}</td>
+                                <td>{{__('labels.addresssender')}}</td>
+                                <td>{{__('labels.recievername')}}</td>
+                                <td>{{__('labels.addressreciever')}}</td>
+                                <td>{{__('labels.date')}}</td>
+                                <td>{{__('labels.dimensions')}}</td>
+                                <td>{{__('labels.weight')}}</td>
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                <td>Bijwerken</td>
-                                <td>Pdfprint</td>
+                                <td>{{__('labels.update')}}</td>
+                                <td>{{__('labels.pdfprint')}}</td>
                                 @endif
                                 </tr>
                             </thead>
@@ -78,18 +78,18 @@
                             <tfoot>
                                 <tr>
                                 <th>id</th>
-                                <td>trackingNumber</td>
-                                <td>Package_name</td>
-                                <td>Name_Sender</td>
-                                <td>Address_Sender</td>
-                                <td>Name_Reciever</td>
-                                <td>Address_Reciever</td>
-                                <td>Date</td>
-                                <td>Dimensions</td>
-                                <td>Weight</td>
-                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                <td>Bijwerken</td>
-                                <td>Pdfprint</td>
+                                    <td>{{__('labels.trackingNumber')}}</td>
+                                    <td>{{__('labels.packagename')}}</td>
+                                    <td>{{__('labels.namesender')}}</td>
+                                    <td>{{__('labels.addresssender')}}</td>
+                                    <td>{{__('labels.recievername')}}</td>
+                                    <td>{{__('labels.addressreciever')}}</td>
+                                    <td>{{__('labels.date')}}</td>
+                                    <td>{{__('labels.dimensions')}}</td>
+                                    <td>{{__('labels.weight')}}</td>
+                                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                    <td>{{__('labels.update')}}</td>
+                                    <td>{{__('labels.pdfprint')}}</td>
                                     @endif
                                 </tr>
                             </tfoot>

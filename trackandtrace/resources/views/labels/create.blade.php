@@ -4,7 +4,7 @@
 
 @if ($errors->any())
     <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>{{__('errors.Whoops')}}</strong> {{__('errors.errorMessage')}}<br><br>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -16,22 +16,25 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Labels aanmaken</h3>
+                    <h3 class="card-title">{{__('labels.createlabelsheader')}}</h3>
                 </div>
                 <form action="{{ route('labels.store') }}" method="POST">
                     @csrf
                     <table class="table" id="multiForm">
                         <thead>
                             <tr>
-                                <th>TrackingNumber</th>
-                                <th>Package_name</th>
-                                <th>Name_Sender</th>
-                                <th>Address_Sender</th>
-                                <th>Name_Reciever</th>
-                                <th>Address_Reciever</th>
-                                <th>Date</th>
-                                <th>Dimensions</th>
-                                <th>Weight</th>
+                                <th>{{__('labels.trackingNumber')}}</th>
+                                <th>{{__('labels.packagename')}}</th>
+                                <th>{{__('labels.namesender')}}</th>
+                                <th>{{__('labels.addresssender')}}</th>
+                                <th>{{__('labels.recievername')}}</th>
+                                <th>{{__('labels.addressreciever')}}</th>
+                                <th>{{__('labels.date')}}</th>
+                                <th>{{__('labels.dimensions')}}</th>
+                                <th>{{__('labels.weight')}}</th>
+                                @if(auth()->user()->role_id == 1)
+                                <th>shopID</th>
+                                @endif
                                 <th>Toevoegen</th>
                             </tr>
                         </thead>
@@ -62,7 +65,7 @@
                     </div>
                 </form>
                 <div class="pull-right mt-3">
-                    <a class="btn btn-primary" href="{{ route('labels.index') }}"> Back</a>
+                    <a class="btn btn-primary" href="{{ route('labels.index') }}"> {{__('pagination.previous')}}</a>
                 </div>
             </div>
         </div>

@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'previous' => 'Back',
-    'next' => 'Next',
+    'Whoops' => 'Aiii aii aii dit is niet goed',
+    'errorMessage' => 'Er zijn wat foutjes in je inputs.',
+
+
 
 ];

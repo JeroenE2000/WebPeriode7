@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PickUpController;
@@ -29,6 +30,7 @@ Auth::routes();
 Route::resource('/home', HomeController::class)->only(['index']);
 Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
 Route::put('/parcels/status/parcels', [PackageController::class, 'status'])->name('parcels.status');
+Route::get('lang/{lang}',  [LanguageController::class , 'switchLang'])->name('lang.switch');
 
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);

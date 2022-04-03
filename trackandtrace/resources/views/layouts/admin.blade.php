@@ -23,6 +23,12 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('lang.switch', 'en') }}">EN</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"href="{{ route('lang.switch', 'nl') }}">NL</a>
+      </li>
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
