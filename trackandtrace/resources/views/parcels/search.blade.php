@@ -1,8 +1,5 @@
-@if(!Auth::check())
 @extends('layouts.app')
-@else
-@extends('layouts.admin')
-@endif
+
 @section('content')
     <section class="content">
         <div class="col-12 w-50 mx-auto">

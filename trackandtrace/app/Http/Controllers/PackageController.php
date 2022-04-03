@@ -75,8 +75,11 @@ class PackageController extends Controller
         if($label !== null){
             foreach($label as $l) {
                 $parcel = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('label_id', '=', $l->id)->get();
+                if($parcel !== null) {
+                    return view('parcels.show', compact('parcel'));
+                }
             }
-            return view('parcels.show', compact('parcel'));
+            return view('parcels.search');
         }
         return view('parcels.search');
     }
