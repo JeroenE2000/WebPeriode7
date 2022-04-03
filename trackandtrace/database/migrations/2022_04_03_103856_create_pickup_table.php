@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pickup', function (Blueprint $table) {
+        Schema::create('pickups', function (Blueprint $table) {
             $table->id();
             $table->dateTime('time');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pickup');
+        Schema::dropIfExists('pickups');
     }
 };

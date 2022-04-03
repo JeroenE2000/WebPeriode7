@@ -25,9 +25,6 @@ class Labels extends Model
         'Weight'
     ];
 
-    public $sortable = ['trackingNumber', 'Package_name', 'Name_Sender', 'Name_Reciever', 'Address_Reciever' , 'Date' , 'Dimensions' , 'Weight'];
-
-
     public function toSearchableArray() {
         return [
             'TrackingNumber' => $this->TrackingNumber,

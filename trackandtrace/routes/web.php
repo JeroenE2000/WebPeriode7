@@ -47,7 +47,7 @@ Route::middleware(['isSuperAdmin'])->group(function() {
 
     Route::controller(PickUpController::class)->group(function(){
         Route::get('pickup/{package}/create' , 'create')->name('pickup.create');
-        Route::post('pickup' , 'store')->name('pickup.store');
+        Route::post('pickup/{package}' , 'pickUpStoreAndUpdate')->name('pickup.store');
     });
 
 });
@@ -65,6 +65,11 @@ Route::middleware(['isAdministratie'])->group(function() {
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class)->only(['index' , 'create' , 'edit' , 'store' , 'update']);
     Route::resource('/reviews' , ReviewController::class)->except(['create' , 'store']);
+
+    Route::controller(PickUpController::class)->group(function(){
+        Route::get('pickup/{package}/create' , 'create')->name('pickup.create');
+        Route::post('pickup/{package}' , 'pickUpStoreAndUpdate')->name('pickup.store');
+    });
 
 });
 

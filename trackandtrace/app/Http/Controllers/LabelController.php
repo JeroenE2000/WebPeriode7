@@ -19,10 +19,10 @@ class LabelController extends Controller
     {
         $user = Auth::user();
         if($user->role_id !== 1) {
-            $data = Labels::where('shop_id' , '=' , $user->shop_id)->sortable()->paginate(5);
+            $data = Labels::where('shop_id' , '=' , $user->shop_id)->get();
             return view('labels.index' ,['labels' => $data]);
         }
-        $data = Labels::sortable()->paginate(5);
+        $data = Labels::all();
         return view('labels.index' ,['labels' => $data]);
     }
 
@@ -153,11 +153,11 @@ class LabelController extends Controller
         }
         $user = Auth::user();
         if($user->role_id !== 1) {
-            $data = Labels::search($request->search)->where('shop_id', $user->shop_id)->sortable()->paginate(5);
+            $data = Labels::search($label)->where('shop_id', $user->shop_id)->get();
             return view('labels.index' ,['labels' => $data]);
         }
 
-        $data = Labels::search($request->search)->sortable()->paginate(5);
+        $data = Labels::search($label)->get();
         return view('labels.index' ,['labels' => $data]);
     }
 }

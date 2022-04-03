@@ -13,7 +13,6 @@
          <div class="col-lg-12 margin-tb">
                <div class="pull-right">
                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                    <a class="btn btn-success" href="{{ route('package.create') }}"> Nieuwe pakket aanmaken</a>
                     <a class="btn btn-success" href="{{ route('package.csvimport') }}"> Csv Import</a>
                 @endif
                </div>
@@ -32,7 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <td>@sortablelink('deleveryservice' , 'deleveryservice')</td>
+                                    <td>@sortablelink('deliveryservice' , 'deleveryservice')</td>
                                     <td>@sortablelink('parcel_label.Package_name' , 'package name')</td>
                                     <td>@sortablelink('parcel_label.Name_sender' , 'name sender')</td>
                                     <td>@sortablelink('shop.name' , 'shop')</td>
@@ -42,7 +41,7 @@
                                     <td>Review geven</td>
                                     @endif
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td>deliverty time</td>
+                                        <td>@sortablelink('pickup.time' , 'pickup time')</td>
                                     @endif
                                 </tr>
                             </thead>
@@ -60,7 +59,12 @@
                                 <td><a class="btn btn-primary" href="{{ route('review.create',$package) }}">add Review</a></td>
                                 @endif
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                <td><a class="btn btn-primary" href="{{ route('pickup.create',$package) }}">add delivery time</a></td>
+                                    @if($package->pickup !== null)
+                                    <td>{{$package->pickup->time}}</td>
+                                    @endif
+                                    @if($package->pickup == null)
+                                    <td><a class="btn btn-primary" href="{{ route('pickup.create',$package) }}">add delivery time</a></td>
+                                    @endif
                                 @endif
                                 </tr>
                                 @endforeach
@@ -73,15 +77,19 @@
                                     <td>Name sender</td>
                                     <td>shop</td>
                                     <td>status</td>
+                                    <td>customer name</td>
                                     @if(auth()->user()->role_id == 4)
                                     <td>Review geven</td>
                                     @endif
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td>deliverty time</td>
+                                    <td>pickup time</td>
                                     @endif
                                 </tr>
                             </tfoot>
                         </table>
+                        <div class="mt-4">
+                            {!! $packages->links('pagination::bootstrap-4')!!}
+                        </div>
                     </div>
                <!-- /.card-body -->
             </div>

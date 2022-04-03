@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-<link rel="stylesheet" href="{{ URL::asset('css/review.css') }}">
 @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -13,9 +12,10 @@
     </div>
 @endif
 <section class="content">
-    <form action="{{ route('pickup.store') }}" method="POST">
+    <form action="{{ route('pickup.store' , $packageId) }}" method="POST">
         @csrf
-        <input type="datetime-local" name="date" class="form-control" />
+        @method('post')
+        <input type="datetime-local" name="time" class="form-control" />
         <div class="d-grid mt-3">
             <input type="submit" class="btn btn-primary" value="Submit">
         </div>

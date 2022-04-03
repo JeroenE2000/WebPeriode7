@@ -40,15 +40,15 @@
                             <thead>
                                 <tr>
                                 <th>id</th>
-                                <td>@sortablelink('trackingNumber' , 'trackingNumber')</td>
-                                <td>@sortablelink('Package_name' , 'Package_name')</td>
-                                <td>@sortablelink('Name_Sender' , 'Name_Sender')</td>
-                                <td>@sortablelink('Address_Sender' , 'Address_Sender')</td>
-                                <td>@sortablelink('Name_Reciever' , 'Name_Reciever')</td>
-                                <td>@sortablelink('Address_Reciever' , 'Address_Reciever')</td>
-                                <td>@sortablelink('Date' , 'Date')</td>
-                                <td>@sortablelink('Dimensions' , 'Dimensions')</td>
-                                <td>@sortablelink('Weight' , 'Weight')</td>
+                                <td>trackingNumber</td>
+                                <td>Package_name</td>
+                                <td>Name_Sender</td>
+                                <td>Address_Sender</td>
+                                <td>Name_Reciever</td>
+                                <td>Address_Reciever</td>
+                                <td>Date</td>
+                                <td>Dimensions</td>
+                                <td>Weight</td>
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                 <td>Bijwerken</td>
                                 <td>Pdfprint</td>
@@ -94,9 +94,6 @@
                                 </tr>
                             </tfoot>
                         </table>
-                    </div>
-                    <div class="mt-4">
-                        {!! $labels->links('pagination::bootstrap-4')!!}
                     </div>
                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                     <div class="mt-4">
