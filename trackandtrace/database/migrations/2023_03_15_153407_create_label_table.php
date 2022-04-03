@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('Address_Sender');
             $table->string('Name_Reciever');
             $table->string('Address_Reciever');
-            $table->date('Date');
+            $table->date('Date')->nullable();
             $table->string('Dimensions');
             $table->integer('Weight');
             $table->timestamps();
