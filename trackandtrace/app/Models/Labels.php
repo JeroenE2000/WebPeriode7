@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Laravel\Scout\Searchable;
 use Laravel\Sanctum\HasApiTokens;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Labels extends Model
 {
-    use HasFactory , Searchable , HasApiTokens;
+    use HasFactory , Searchable , HasApiTokens , Sortable;
 
     public $fillable = [
         'shop_id',
@@ -23,6 +24,9 @@ class Labels extends Model
         'Dimensions',
         'Weight'
     ];
+
+    public $sortable = ['trackingNumber', 'Package_name', 'Name_Sender', 'Name_Reciever', 'Address_Reciever' , 'Date' , 'Dimensions' , 'Weight'];
+
 
     public function toSearchableArray() {
         return [

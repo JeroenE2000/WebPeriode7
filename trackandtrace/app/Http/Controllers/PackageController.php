@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Labels;
+use App\Imports\ParcelImport;
 use App\Models\Parcels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PackageController extends Controller
 {
@@ -18,6 +19,21 @@ class PackageController extends Controller
         }
         $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('shop_id', '=' , $user->shop_id)->get();
         return view('parcels.index' , compact('packages'));
+    }
+
+    public function fileImportExport() {
+        return view('parcels.import');
+    }
+
+    public function fileImport(Request $request) {
+        Excel::import(new ParcelImport, $request->file('file')->store('temp'));
+        $user = Auth::user();
+        if($user->role_id !== 1) {
+            $data = Parcels::where('shop_id' , '=' , $user->shop_id)->get();
+            return view('parcels.index' ,['parcels' => $data]);
+        }
+        $data = Parcels::all();
+        return view('parcels.index' ,['packages' => $data]);
     }
 
     public function create()
