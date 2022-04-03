@@ -21,7 +21,7 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-Route::put('/', [PackageController::class, 'search'])->name('parcels.search');
+Route::get('/', [PackageController::class, 'search'])->name('parcels.search');
 
 Auth::routes();
 

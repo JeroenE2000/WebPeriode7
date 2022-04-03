@@ -7,7 +7,9 @@
                 <div class="card-header">
                     <h3 class="card-title">Your package's status</h3>
                 </div>
-                {{$parcel->parcel_status->state}}
+               @foreach($parcel as $p)
+                    {{$p->parcel_status->state}}
+               @endforeach
             </div>
         </div>
     </section>

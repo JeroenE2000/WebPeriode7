@@ -153,11 +153,11 @@ class LabelController extends Controller
         }
         $user = Auth::user();
         if($user->role_id !== 1) {
-            $data = Labels::search($request->search)->where('shop_id', $user->shop_id)->get();
+            $data = Labels::search($request->search)->where('shop_id', $user->shop_id)->sortable()->paginate(5);
             return view('labels.index' ,['labels' => $data]);
         }
 
-        $data = Labels::search($request->search)->get();
+        $data = Labels::search($request->search)->sortable()->paginate(5);
         return view('labels.index' ,['labels' => $data]);
     }
 }

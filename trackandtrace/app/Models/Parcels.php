@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\Models\Shops;
 use App\Models\Labels;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Parcels extends Model
 {
-    use HasFactory;
+    use HasFactory , Sortable;
 
     public $fillable = [
         'deliveryservice',
@@ -18,6 +19,9 @@ class Parcels extends Model
         'parcel_status_id',
         'receiver_id',
     ];
+
+    public $sortable = ['deliveryservice', 'label_id', 'shop_id', 'parcel_status_id', 'receiver_id'];
+
 
     public function parcel_label() {
        return $this->belongsTo(Labels::class , 'label_id');

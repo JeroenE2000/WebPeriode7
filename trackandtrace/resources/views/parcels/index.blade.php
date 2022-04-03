@@ -32,12 +32,12 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <td>deleveryservice</td>
-                                    <td>Package name</td>
-                                    <td>Name sender</td>
-                                    <td>shop</td>
-                                    <td>status</td>
-                                    <td>Naam ontvanger</td>
+                                    {{-- <td>@sortablelink('deleveryservice' , 'deleveryservice')</td>
+                                    <td>@sortablelink('parcel_label.Package_name' , 'package name')Package name</td>
+                                    <td>@sortablelink('parcel_label.Name_sender' , 'name sender')Name sender</td>
+                                    <td>@sortablelink('shop.name' , 'shop')shop</td>
+                                    <td>@sortablelink('receiver_id' , 'status')status</td>
+                                    <td>@sortablelink('deleveryservice' , 'deleveryservice')Naam ontvanger</td> --}}
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <td>Bijwerken</td>
                                     @endif

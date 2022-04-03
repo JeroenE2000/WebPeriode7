@@ -15,10 +15,10 @@ class PackageController extends Controller
     {
         $user = Auth::user();
         if($user->role_id !== 1) {
-            $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->get();
+            $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->sortable()->paginate(5);
             return view('parcels.index' , compact('packages'));
         }
-        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('shop_id', '=' , $user->shop_id)->get();
+        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('shop_id', '=' , $user->shop_id)->sortable()->paginate(5);
         return view('parcels.index' , compact('packages'));
     }
 
@@ -67,10 +67,12 @@ class PackageController extends Controller
 
     public function status(Request $request)
     {
-        $label = Labels::where('TrackingNumber', '=', $request->input('TrackingNumber'));
+        $label = Labels::where('TrackingNumber', '=', $request->input('TrackingNumber'))->get();
         if($label !== null){
-            $parcel = Parcels::where('label_id', '=', $label->id);
-            return view('parcels.status', compact('parcel'));
+            foreach($label as $l) {
+                $parcel = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('label_id', '=', $l->id)->get();
+            }
+            return view('parcels.show', compact('parcel'));
         }
         return view('parcels.search');
     }
