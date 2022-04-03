@@ -25,12 +25,9 @@ class PickUpController extends Controller
      */
     public function create($packageId)
     {
-        $timeCheck = mktime(15,0 ,0);
-        $minusday = '+1 day';
-        $format = ('Y-m-d H:i:s');
-        $dateCheck = date($format , strtotime(date($format , $timeCheck).$minusday));
 
-        return view('pickup.create' , compact('packageId' , 'dateCheck'));
+
+        return view('pickup.create' , compact('packageId'));
     }
 
     /**
@@ -41,9 +38,12 @@ class PickUpController extends Controller
      */
     public function store(Request $request)
     {
+        $timeCheck = mktime(15,0 ,0);
+        $minusday = '+1 day';
+        $format = ('Y-m-d H:i:s');
+        $dateCheck = date($format , strtotime(date($format , $timeCheck).$minusday));
         $request->validate([
-            'start_date' => 'required|',
-            'date' => 'required|after_or_equal:start_date'
+            'date' => 'required|after:'.$dateCheck,
         ]);
         dd("hallo");
     }
