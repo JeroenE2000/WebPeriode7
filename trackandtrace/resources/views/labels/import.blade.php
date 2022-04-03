@@ -10,7 +10,7 @@
                     <label class="custom-file-label" id="file-name" for="customFile"></label>
                 </div>
             </div>
-            <button class="btn btn-primary">Import data</button>
+            <button class="btn btn-primary">{{__('labels.dataImport')}}</button>
         </form>
     </div>
     <script>

@@ -29,5 +29,6 @@ return [
     'addLabel' => 'Label is added',
     'updateLabel' => 'Label is updated',
     'createlabelsheader' => 'Add label',
-
+    'dataImport' => 'Import data',
+    'updatelabelheader' => '',
 ];
