@@ -97,6 +97,12 @@
             </a>
           </li>
           @endif
+          <li class="nav-item">
+            <a href="{{url('reviews')}}" class="nav-link">
+              <i class="nav-icon ion ion-person"></i>
+              <p>Reviews</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

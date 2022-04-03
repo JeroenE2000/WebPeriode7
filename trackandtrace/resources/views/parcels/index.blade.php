@@ -32,14 +32,17 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    {{-- <td>@sortablelink('deleveryservice' , 'deleveryservice')</td>
-                                    <td>@sortablelink('parcel_label.Package_name' , 'package name')Package name</td>
-                                    <td>@sortablelink('parcel_label.Name_sender' , 'name sender')Name sender</td>
-                                    <td>@sortablelink('shop.name' , 'shop')shop</td>
-                                    <td>@sortablelink('receiver_id' , 'status')status</td>
-                                    <td>@sortablelink('deleveryservice' , 'deleveryservice')Naam ontvanger</td> --}}
+                                    <td>@sortablelink('deleveryservice' , 'deleveryservice')</td>
+                                    <td>@sortablelink('parcel_label.Package_name' , 'package name')</td>
+                                    <td>@sortablelink('parcel_label.Name_sender' , 'name sender')</td>
+                                    <td>@sortablelink('shop.name' , 'shop')</td>
+                                    <td>@sortablelink('parcel_status.state' , 'status')</td>
+                                    <td>@sortablelink('receiver.name' , 'customer name')</td>
+                                    @if(auth()->user()->role_id == 4)
+                                    <td>Review geven</td>
+                                    @endif
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td>Bijwerken</td>
+                                    <td>deliverty time</td>
                                     @endif
                                 </tr>
                             </thead>
@@ -53,11 +56,11 @@
                                 <td><i class="nav-icon fas fa-store"></i> {{$package->shop->name}}</td>
                                 <td>{{$package->parcel_status->state}}</td>
                                 <td>{{$package->receiver->name}}</td>
-                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td><a class="btn btn-primary" href="{{ route('package.edit',$package->id) }}">Bijwerken</a></td>
-                                @endif
                                 @if(auth()->user()->role_id == 4)
-                                <td><a class="btn btn-primary" href="{{ route('review.create',$package) }}">Review geven</a></td>
+                                <td><a class="btn btn-primary" href="{{ route('review.create',$package) }}">add Review</a></td>
+                                @endif
+                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                <td><a class="btn btn-primary" href="{{ route('pickup.create',$package) }}">add delivery time</a></td>
                                 @endif
                                 </tr>
                                 @endforeach
@@ -70,11 +73,11 @@
                                     <td>Name sender</td>
                                     <td>shop</td>
                                     <td>status</td>
-                                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td>Bijwerken</td>
-                                    @endif
                                     @if(auth()->user()->role_id == 4)
                                     <td>Review geven</td>
+                                    @endif
+                                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                    <td>deliverty time</td>
                                     @endif
                                 </tr>
                             </tfoot>

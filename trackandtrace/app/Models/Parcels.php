@@ -18,6 +18,7 @@ class Parcels extends Model
         'shop_id',
         'parcel_status_id',
         'receiver_id',
+        'pickup_id'
     ];
 
     public $sortable = ['deliveryservice', 'label_id', 'shop_id', 'parcel_status_id', 'receiver_id'];
@@ -38,6 +39,11 @@ class Parcels extends Model
     public function receiver()
     {
        return $this->belongsTo(User::class , 'receiver_id');
+    }
+
+    public function pickup()
+    {
+       return $this->belongsTo(Pickup::class , 'pickup_id');
     }
 
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\PickUpController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReviewController;
@@ -43,6 +44,11 @@ Route::middleware(['isSuperAdmin'])->group(function() {
     Route::post('/generate-barcode', [PDFController::class, 'index'])->name('generate.barcode');
     Route::resource('/shops' , ShopController::class);
     Route::resource('/reviews' , ReviewController::class)->except(['create' , 'store']);
+
+    Route::controller(PickUpController::class)->group(function(){
+        Route::get('pickup/{package}/create' , 'create')->name('pickup.create');
+        Route::post('pickup' , 'store')->name('pickup.store');
+    });
 
 });
 

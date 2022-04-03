@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->foreignId('parcel_status_id')->references('id')->on('parcel_status')->onDelete('cascade');
             $table->foreignId('receiver_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('pickup_id')->nullable()->references('id')->on('pickup')->onDelete('cascade');
             $table->timestamps();
         });
     }

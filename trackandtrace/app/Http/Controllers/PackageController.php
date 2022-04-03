@@ -14,11 +14,15 @@ class PackageController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if($user->role_id !== 1) {
-            $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->sortable()->paginate(5);
+        if($user->role_id !== 1 && $user->role_id !== 4) {
+            $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('shop_id', '=' , $user->shop_id)->sortable()->paginate(5);
+            return view('parcels.index' , compact('packages'));
+        } else if($user->role_id === 4) {
+            $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('receiver_id', '=' , $user->id)->sortable()->paginate(5);
             return view('parcels.index' , compact('packages'));
         }
-        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->where('shop_id', '=' , $user->shop_id)->sortable()->paginate(5);
+        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->sortable()->paginate(5);
+
         return view('parcels.index' , compact('packages'));
     }
 
@@ -117,6 +121,7 @@ class PackageController extends Controller
             'labels_id' => 'required|integer',
             'shop_id' => 'required|integer',
             'parcel_status_id' => 'required|integer',
+            'receiver_id' => 'required|integer',
         ]);
         $package = Parcels::find($id);
         $package->update($request->all());
