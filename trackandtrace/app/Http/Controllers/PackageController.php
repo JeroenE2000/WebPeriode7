@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ParcelImport;
 use App\Models\Parcels;
+use App\Models\Labels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -60,9 +61,18 @@ class PackageController extends Controller
         return Parcels::create($request->all());
     }
 
-    public function show($id)
-    {
+    public function search(){
+        return view('parcels.search');
+    }
 
+    public function status(Request $request)
+    {
+        $label = Labels::where('TrackingNumber', '=', $request->input('TrackingNumber'));
+        if($label !== null){
+            $parcel = Parcels::where('label_id', '=', $label->id);
+            return view('parcels.status', compact('parcel'));
+        }
+        return view('parcels.search');
     }
 
     public function edit($id)

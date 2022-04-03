@@ -21,15 +21,13 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::put('/', [PackageController::class, 'search'])->name('parcels.search');
 
 Auth::routes();
 
 Route::resource('/home', HomeController::class)->only(['index']);
 Route::put('/labels/search', [LabelController::class, 'search'])->name('labels.search');
-
+Route::put('/parcels/status/parcels', [PackageController::class, 'status'])->name('parcels.status');
 
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
