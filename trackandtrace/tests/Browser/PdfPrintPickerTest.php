@@ -27,7 +27,8 @@ class PdfPrintPickerTest extends DuskTestCase
                     ->check("#checkbox1")
                     ->check("#checkbox2")
                     ->press('PdfExport')
-                    ->pause(2000);
+                    ->pause(2000)
+                    ->assertPathIs('/labels');
         });
     }
 }

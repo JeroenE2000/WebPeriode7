@@ -23,6 +23,5 @@ class InpakkerLoginTest extends DuskTestCase
                     ->pause(2000)
                     ->assertPathIs('/home');
         });
-        //assertsee voor fulltext
     }
 }

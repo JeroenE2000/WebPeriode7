@@ -28,11 +28,13 @@ class CsvImportTest extends DuskTestCase
             ->visit(
                 $browser->attribute('#csv' , 'href')
             )
+            ->assertPathIs('/labels/import/labels')
             ->pause(2000)
             ->attach('file', storage_path('app/public/testing/testData.csv'))
             ->pause(2000)
             ->press('Import data')
-            ->pause(5000);
+            ->pause(5000)
+            ->assertPathIs('/labels');
         });
     }
 }

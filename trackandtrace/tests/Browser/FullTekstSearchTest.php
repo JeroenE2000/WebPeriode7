@@ -28,7 +28,8 @@ class FullTekstSearchTest extends DuskTestCase
                     ->press('Search')
                     ->pause(2000)
                     ->assertsee('Paraplustok')
-                    ->pause(2000);
+                    ->pause(2000)
+                    ->assertPathIs('/labels/search');
         });
     }
 }

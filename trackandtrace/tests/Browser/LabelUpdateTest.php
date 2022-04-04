@@ -17,7 +17,7 @@ class LabelUpdateTest extends DuskTestCase
     public function testExample()
     {
         $this->browse(function (Browser $browser) {
-           
+
             $browser->visit('/login')
                     ->type('email' , 'test@gmail.com')
                     ->type('password' , 'password')
@@ -35,7 +35,8 @@ class LabelUpdateTest extends DuskTestCase
                     ->type('Address_Reciever' , '2344 AH')
                     ->pause(2000)
                     ->press('Submit')
-                    ->pause(2000);
+                    ->pause(2000)
+                    ->assertPathIs('/labels');
         });
     }
 }

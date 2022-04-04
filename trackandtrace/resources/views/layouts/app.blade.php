@@ -61,7 +61,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('labels.index') }}">{{ __('Labels') }}</a>
+                                    <a class="nav-link" href="{{ route('home.index') }}">{{ __('cms') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>

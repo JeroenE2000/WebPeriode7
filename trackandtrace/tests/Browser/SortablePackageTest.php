@@ -35,7 +35,9 @@ class SortablePackageTest extends DuskTestCase
                     ->visit('/package?sort=parcel_status.state&direction=asc')
                     ->pause(2000)
                     ->visit('/package?sort=receiver.name&direction=asc')
-                    ->pause(2000);
+                    ->pause(2000)
+                    ->visit('/package')
+                    ->assertPathIs('/package');
         });
     }
 }

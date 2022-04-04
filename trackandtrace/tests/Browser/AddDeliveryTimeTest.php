@@ -42,8 +42,8 @@ class AddDeliveryTimeTest extends DuskTestCase
                     ->keys('#datetimepickup', $date->minute)
                     ->pause(2000)
                     ->press('Submit')
-                    ->pause(2000);
-                    ;
+                    ->pause(2000)
+                    ->assertPathIs('/package');
         });
     }
 }

@@ -60,7 +60,9 @@ class MakeNewLabelTest extends DuskTestCase
                     ->type('#shop_id1' , '2')
                     ->pause(2000)
                     ->press('Submit')
-                    ->pause(2000);
+                    ->pause(2000)
+                    ->assertPathIs('/labels');
+
         });
     }
 }
