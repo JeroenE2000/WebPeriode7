@@ -5,9 +5,8 @@ namespace Tests\Browser;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class SuperAdminTest extends DuskTestCase
+class AdministratorLoginTest extends DuskTestCase
 {
-
     /**
      * A Dusk test example.
      *
@@ -17,7 +16,7 @@ class SuperAdminTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                    ->type('email' , 'test@gmail.com')
+                    ->type('email' , 'piet@gmail.com')
                     ->type('password' , 'password')
                     ->press('Login')
                     ->pause(20000)
