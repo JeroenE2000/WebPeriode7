@@ -53,7 +53,7 @@ class PackageController extends Controller
     {
         $request->validate([
             'deliveryservice' => 'required|string',
-            'label_id' => 'required|integer',
+            'label_id' => 'required|integer|unique:parcels,label_id',
             'shop_id' => 'required|integer',
             'parcel_status_id' => 'required|integer',
             'receiver_id' => 'required|integer',
@@ -108,7 +108,7 @@ class PackageController extends Controller
     {
         $request->validate([
             'deliveryservice' => 'required|string',
-            'labels_id' => 'required|integer',
+            'label_id' => 'required|integer|unique:parcels,label_id',
             'shop_id' => 'required|integer',
             'parcel_status_id' => 'required|integer',
             'receiver_id' => 'required|integer',

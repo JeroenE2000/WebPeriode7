@@ -18,7 +18,7 @@ class ParcelImport implements ToCollection , WithHeadingRow
     {
         Validator::make($rows->toArray(), [
             '*.deliveryservice' => 'string',
-            '*.label_id' => '|unique:parcels,label_id',
+            '*.label_id' => 'integer|unique:parcels,label_id',
             '*.shop_id' => 'integer',
             '*.parcel_status_id' => 'integer',
             '*.receiver_id' => 'integer',
