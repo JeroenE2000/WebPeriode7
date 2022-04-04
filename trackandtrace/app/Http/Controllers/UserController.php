@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Shops;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -29,7 +30,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::all();
-        return view('users.edit' , compact('user' , 'roles'));
+        $shops = Shops::all();
+        return view('users.edit' , compact('user' , 'roles' , 'shops'));
     }
 
     /**
@@ -45,7 +47,22 @@ class UserController extends Controller
             'role' => 'required|integer',
         ]);
         $user = User::find($id);
+        $roles = Role::all();
+        $shops = Shops::all();
+        if($request->input('role') === "Selecteer een role") {
+            return view('users.edit' , compact('user' , 'roles' , 'shops'));
+        }
         $user->role_id = $request->input('role');
+        if($request->input('shopID') === "Geen shop") {
+            $user->shop_id = NULL;
+
+        } else if($request->input('role') === '4') {
+            return view('users.edit' , compact('user' , 'roles' , 'shops'));
+        }
+        else {
+            $user->shop_id = $request->input('shopID');
+        }
+
         $user->save();
         return redirect()->route('users.index')->with('success' , 'Role succesvol bijgewerkt');
     }
