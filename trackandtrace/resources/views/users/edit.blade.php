@@ -30,7 +30,13 @@
                         <select type="text" name="role" class="form-control">
                             <option>{{__('users.select')}}</option>
                             @foreach($roles as $r)
-                                <option value="{{$r->id}}" {{$r->id == $user->id ? 'selected' : ''}}>{{$r->name}}</option>
+                                <option value="{{$r->id}}" {{$r->id == $user->role_id ? 'selected' : ''}}>{{$r->name}}</option>
+                            @endforeach
+                        </select>
+                        <select type="text" name="shopID" class="form-control">
+                            <option>Geen shop</option>
+                            @foreach($shops as $s)
+                                <option value="{{$s->id}}" {{$s->id == $user->shop_id ? 'selected' : ''}}>{{$s->name}}</option>
                             @endforeach
                         </select>
                     </div>
