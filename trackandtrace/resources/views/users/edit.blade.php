@@ -45,7 +45,7 @@
                 </div>
             </form>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('labels.index') }}">{{__('users.back')}}</a>
+                <a class="btn btn-primary" href="{{ route('users.index') }}">{{__('users.back')}}</a>
             </div>
         </div>
     </div>
