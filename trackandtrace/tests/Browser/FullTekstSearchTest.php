@@ -2,10 +2,11 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class AdministratorLoginTest extends DuskTestCase
+class FullTekstSearchTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -20,7 +21,14 @@ class AdministratorLoginTest extends DuskTestCase
                     ->type('password' , 'password')
                     ->press('Login')
                     ->pause(2000)
-                    ->assertPathIs('/home');
+                    ->assertPathIs('/home')
+                    ->visit('/labels')
+                    ->assertPathIs('/labels')
+                    ->type('search' , 'Paraplustok')
+                    ->press('Search')
+                    ->pause(2000)
+                    ->assertsee('Paraplustok')
+                    ->pause(2000);
         });
     }
 }

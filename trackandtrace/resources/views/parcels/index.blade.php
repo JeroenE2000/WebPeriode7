@@ -31,17 +31,17 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <td>@sortablelink('deliveryservice')</td>
-                                    <td>@sortablelink('parcel_label.Package_name' , 'package name')</td>
-                                    <td>@sortablelink('parcel_label.Name_sender' , 'name sender')</td>
-                                    <td>@sortablelink('shop.name' , 'shop')</td>
-                                    <td>@sortablelink('parcel_status.state' , 'status')</td>
-                                    <td>@sortablelink('receiver.name' , 'customer name')</td>
+                                    <td id="deliveryservice">@sortablelink('deliveryservice')</td>
+                                    <td id="package_name">@sortablelink('parcel_label.Package_name' , 'package name')</td>
+                                    <td id="name_sender">@sortablelink('parcel_label.Name_sender' , 'name sender')</td>
+                                    <td id="shop">@sortablelink('shop.name' , 'shop')</td>
+                                    <td id="status">@sortablelink('parcel_status.state' , 'status')</td>
+                                    <td id="customer_name">@sortablelink('receiver.name' , 'customer name')</td>
                                     @if(auth()->user()->role_id == 4)
                                     <td>Review geven</td>
                                     @endif
                                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                        <td>@sortablelink('pickup.time' , 'pickup time')</td>
+                                        <td id="pickup_time">@sortablelink('pickup.time' , 'pickup time')</td>
                                     @endif
                                 </tr>
                             </thead>
@@ -63,7 +63,7 @@
                                     <td>{{$package->pickup->time}}</td>
                                     @endif
                                     @if($package->pickup == null)
-                                    <td><a class="btn btn-primary" href="{{ route('pickup.create',$package) }}">add delivery time</a></td>
+                                    <td><a id="time{{$package->id}}" class="btn btn-primary" href="{{ route('pickup.create',$package) }}">add delivery time</a></td>
                                     @endif
                                 @endif
                                 </tr>

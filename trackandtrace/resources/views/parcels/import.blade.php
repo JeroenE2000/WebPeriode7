@@ -1,6 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>{{__('errors.Whoops')}}</strong> {{__('errors.errorMessage')}}<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="container mt-5 text-center">
         <form action="{{ route('package.import') }}" method="POST" enctype="multipart/form-data">
             @csrf

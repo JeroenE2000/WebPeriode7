@@ -12,14 +12,15 @@
          <div class="col-lg-12 margin-tb">
                <div class="pull-right">
                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                    <a class="btn btn-success" href="{{ route('labels.create') }}"> {{__('labels.btnlabelcreate')}}</a>
-                    <a class="btn btn-success" href="{{ route('label.csvimport') }}"> {{__('labels.csvimport')}}</a>
+                    <a id="labelName" class="btn btn-success" href="{{ route('labels.create') }}"> {{__('labels.btnlabelcreate')}}</a>
+                    <a id="csv" class="btn btn-success" href="{{ route('label.csvimport') }}"> {{__('labels.csvimport')}}</a>
                 @endif
                   <form method="POST" class="mt-4" action="{{ route('labels.search') }}">
                     @csrf
                     @method('put')
                     <div class="col-md-3">
                         <input value="{{ request()->get('search') }}" type="search" name="search" class="form-control">
+                        <button type="submit" name="buttonsearch" class="btn btn-primary mt-4">Search</button>
                     </div>
                 </form>
 
@@ -69,8 +70,8 @@
                                 <td>{{$l->Dimensions}}</td>
                                 <td>{{$l->Weight}}</td>
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                                    <td><a class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
-                                    <td><input type="checkbox" name="selectedvalue[]" value="{{$l->id}}"/> </td>
+                                    <td><a id="update{{$l->id}}" class="btn btn-primary" href="{{ route('labels.edit',$l) }}">Bijwerken</a></td>
+                                    <td><input id="checkbox{{$l->id}}" type="checkbox" name="selectedvalue[]" value="{{$l->id}}"/> </td>
                                     @endif
                                 </tr>
                                 @endforeach

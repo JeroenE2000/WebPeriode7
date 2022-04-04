@@ -17,6 +17,8 @@ abstract class DuskTestCase extends BaseTestCase
      * @beforeClass
      * @return void
      */
+
+     
     public static function prepare()
     {
         if (! static::runningInSail()) {

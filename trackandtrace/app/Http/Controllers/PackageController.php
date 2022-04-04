@@ -31,6 +31,9 @@ class PackageController extends Controller
     }
 
     public function fileImport(Request $request) {
+        $request->validate([
+            'file' => 'required'
+        ]);
         Excel::import(new ParcelImport, $request->file('file')->store('temp'));
         $user = Auth::user();
         if($user->role_id !== 1) {

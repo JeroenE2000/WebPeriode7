@@ -40,22 +40,22 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><input type="number" name="multiInput[0][TrackingNumber]" class="form-control" required/></td>
-                            <td><input type="text" name="multiInput[0][Package_name]" class="form-control" required/></td>
-                            <td><input type="text" name="multiInput[0][Name_Sender]" class="form-control"required/></td>
-                            <td><input type="text" name="multiInput[0][Address_Sender]" class="form-control" required/></td>
-                            <td><input type="text" name="multiInput[0][Name_Reciever]" class="form-control" required/></td>
-                            <td><input type="text" name="multiInput[0][Address_Reciever]" class="form-control" required/></td>
-                            <td><input type="date" name="multiInput[0][Date]" class="form-control" required/></td>
-                            <td><input type="text" name="multiInput[0][Dimensions]" class="form-control" required/></td>
-                            <td><input type="number" name="multiInput[0][Weight]" class="form-control" required/></td>
+                            <td><input id="TrackingNumber" type="number" name="multiInput[0][TrackingNumber]" class="form-control" /></td>
+                            <td><input id="Package_name" type="text" name="multiInput[0][Package_name]" class="form-control" /></td>
+                            <td><input id="Name_Sender" type="text" name="multiInput[0][Name_Sender]" class="form-control"/></td>
+                            <td><input id="Address_Sender" type="text" name="multiInput[0][Address_Sender]" class="form-control" /></td>
+                            <td><input id="Name_Reciever" type="text" name="multiInput[0][Name_Reciever]" class="form-control" /></td>
+                            <td><input id="Address_Reciever" type="text" name="multiInput[0][Address_Reciever]" class="form-control" /></td>
+                            <td><input id="datee"type="date" name="multiInput[0][Date]" class="form-control" /></td>
+                            <td><input id="Dimensions" type="text" name="multiInput[0][Dimensions]" class="form-control" /></td>
+                            <td><input id="Weight" type="number" name="multiInput[0][Weight]" class="form-control" /></td>
                             @if(auth()->user()->role_id !== 1)
-                            <td><input type="number" name="multiInput[0][shop_id]" class="form-control" hidden value="{{$shop}}"/></td>
+                            <td><input id="shop_id" type="number" name="multiInput[0][shop_id]" class="form-control" hidden value="{{$shop}}"/></td>
                             @endif
                             @if(auth()->user()->role_id === 1)
-                            <td><input type="number" name="multiInput[0][shop_id]" class="form-control"/></td>
+                            <td><input id="shop_id" type="number" name="multiInput[0][shop_id]" class="form-control"/></td>
                             @endif
-                            <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark" required></td>
+                            <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark" ></td>
                         </tr>
                         </tbody>
 
@@ -74,7 +74,7 @@
         var i = 0;
         $("#addRemoveIp").click(function () {
             ++i;
-            $("#multiForm").append('<tr><td><input type="number" name="multiInput['+i+'][TrackingNumber]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Package_name]" class="form-control" required /></td><td><input type="text" name="multiInput['+i+'][Name_Sender]" class="form-control" required/> </td><td><input type="text" name="multiInput['+i+'][Address_Sender]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Name_Reciever]" class="form-control" required/></td> <td><input type="text" name="multiInput['+i+'][Address_Reciever]" class="form-control" required/></td><td><input type="date" name="multiInput['+i+'][Date]" class="form-control" required/></td><td><input type="text" name="multiInput['+i+'][Dimensions]" class="form-control" required/></td><td><input type="number" name="multiInput['+i+'][Weight]" class="form-control" required/></td> @if(auth()->user()->role_id !== 1)<td><input type="number" name="multiInput['+i+'][shop_id]" class="form-control" hidden value="{{$shop}}"/></td> @endif @if(auth()->user()->role_id === 1)<td><input type="number" name="multiInput['+i+'][shop_id]" class="form-control"/></td>@endif<td><button type="button" class="remove-item btn btn-danger">Delete</button></td></tr>');
+            $("#multiForm").append('<tr><td><input id="TrackingNumber'+i+'" type="number" name="multiInput['+i+'][TrackingNumber]" class="form-control" /></td><td><input id="Package_name'+i+'" type="text" name="multiInput['+i+'][Package_name]" class="form-control"  /></td><td><input id="Name_Sender'+i+'" type="text" name="multiInput['+i+'][Name_Sender]" class="form-control" /> </td><td><input id="Address_Sender'+i+'" type="text" name="multiInput['+i+'][Address_Sender]" class="form-control" /></td><td><input id="Name_Reciever'+i+'" type="text" name="multiInput['+i+'][Name_Reciever]" class="form-control" /></td> <td><input id="Address_Reciever'+i+'" type="text" name="multiInput['+i+'][Address_Reciever]" class="form-control" /></td><td><input id="datee'+i+'" type="date" name="multiInput['+i+'][Date]" class="form-control" /></td><td><input id="Dimensions'+i+'" type="text" name="multiInput['+i+'][Dimensions]" class="form-control" /></td><td><input id="Weight'+i+'" type="number" name="multiInput['+i+'][Weight]" class="form-control" /></td> @if(auth()->user()->role_id !== 1)<td><input id="shop_id'+i+'" type="number" name="multiInput['+i+'][shop_id]" class="form-control" hidden value="{{$shop}}"/></td> @endif @if(auth()->user()->role_id === 1)<td><input id="shop_id'+i+'" type="number" name="multiInput['+i+'][shop_id]" class="form-control"/></td>@endif<td><button type="button" class="remove-item btn btn-danger">Delete</button></td></tr>');
         });
         $(document).on('click', '.remove-item', function () {
             $(this).parents('tr').remove();

@@ -47,6 +47,9 @@ class LabelController extends Controller
     }
 
     public function fileImport(Request $request) {
+        $request->validate([
+            'file' => 'required'
+        ]);
         Excel::import(new LabelImport, $request->file('file')->store('temp'));
         $user = Auth::user();
         if($user->role_id !== 1) {
@@ -66,7 +69,7 @@ class LabelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'multiInput.*.TrackingNumber' => 'required|integer',
+            'multiInput.*.TrackingNumber' => 'required|integer|unique:labels,trackingnumber',
             'multiInput.*.Package_name' => 'required|string',
             'multiInput.*.Name_Sender' => 'required|string',
             'multiInput.*.Address_Sender' => 'required|regex:/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i',
@@ -105,7 +108,7 @@ class LabelController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'TrackingNumber' => 'required|integer',
+            'TrackingNumber' => 'required|integer|unique:labels,trackingnumber',
             'Package_name' => 'required|string',
             'Name_Sender' => 'required|string',
             'Address_Sender' => 'required|regex:/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i',

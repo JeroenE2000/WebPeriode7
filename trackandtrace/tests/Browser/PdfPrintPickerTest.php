@@ -2,12 +2,12 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class SuperAdminLoginTest extends DuskTestCase
+class PdfPrintPickerTest extends DuskTestCase
 {
-
     /**
      * A Dusk test example.
      *
@@ -21,7 +21,13 @@ class SuperAdminLoginTest extends DuskTestCase
                     ->type('password' , 'password')
                     ->press('Login')
                     ->pause(2000)
-                    ->assertPathIs('/home');
+                    ->assertPathIs('/home')
+                    ->visit('/labels')
+                    ->assertPathIs('/labels')
+                    ->check("#checkbox1")
+                    ->check("#checkbox2")
+                    ->press('PdfExport')
+                    ->pause(2000);
         });
     }
 }
