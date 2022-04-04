@@ -28,35 +28,35 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Package_name">{{__('labels.packagename')}}</label>
-                        <input type="text" name="Package_name" value="{{$label->Package_name}}" class="form-control" required></input>
+                        <input type="text" name="Package_name" value="{{$label->Package_name}}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Name_Sender">{{__('labels.namesender')}}</label>
-                        <input type="text" name="Name_Sender"  value="{{$label->Name_Sender}}"class="form-control"></input>
+                        <input type="text" name="Name_Sender"  value="{{$label->Name_Sender}}"class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Address_Sender">{{__('labels.addresssender')}}</label>
-                        <input type="text" name="Address_Sender" value="{{$label->Address_Sender}}" class="form-control" required></input>
+                        <input type="text" name="Address_Sender" value="{{$label->Address_Sender}}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Name_Reciever">{{__('labels.recievername')}}</label>
-                        <input type="text" name="Name_Reciever" value="{{$label->Name_Reciever}}" class="form-control" required></input>
+                        <input type="text" name="Name_Reciever" value="{{$label->Name_Reciever}}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Address_Reciever">{{__('labels.addressreciever')}}</label>
-                        <input type="text" name="Address_Reciever" value="{{$label->Address_Reciever}}" class="form-control" required></input>
+                        <input type="text" name="Address_Reciever" value="{{$label->Address_Reciever}}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Date">{{__('labels.date')}}</label>
-                        <input type="date" name="Date" value="{{$label->Date}}"class="form-control" required></input>
+                        <input type="date" name="Date" value="{{$label->Date}}"class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Dimensions">{{__('labels.dimensions')}}</label>
-                        <input type="text" name="Dimensions" value="{{$label->Dimensions}}" class="form-control" required></input>
+                        <input type="text" name="Dimensions" value="{{$label->Dimensions}}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="Weight">{{__('labels.weight')}}</label>
-                        <input type="number" name="Weight" value="{{$label->Weight}}" class="form-control" required></input>
+                        <input type="number" name="Weight" value="{{$label->Weight}}" class="form-control" required>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button type="submit" class="btn btn-primary">Submit</button>

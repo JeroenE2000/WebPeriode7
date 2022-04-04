@@ -15,5 +15,5 @@ return [
 
     'failed' => 'Deze inloggegevens matchen niet met degene in ons archief.',
     'throttle' => 'Te veel login pogingen. Probeer opnieuw in :seconds seconds.',
-
+    'login' => 'Je bent ingelogd.',
 ];

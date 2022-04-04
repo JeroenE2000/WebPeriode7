@@ -7,7 +7,7 @@
           <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
                  @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                     <a class="btn btn-success" href="{{ route('shops.create') }}"> Shop maken</a>
+                     <a class="btn btn-success" href="{{ route('shops.create') }}">{{__('shops.create')}}</a>
                  @endif
                 </div>
           </div>
@@ -16,19 +16,19 @@
           <div class="col-12 col-sm-12">
              <div class="card">
                 <div class="card-header">
-                   <h3 class="card-title">Shops</h3>
+                   <h3 class="card-title">{{__('shops.title')}}</h3>
                 </div>
                 <!-- /.card-header -->
                  <div class="card-body">
                          <table id="" class="table table-bordered table-hover">
                              <thead>
                                  <tr>
-                                 <th>id</th>
-                                 <td>name</td>
-                                 <td>streetname</td>
-                                 <td>streetnumber</td>
-                                 <td>postalcode</td>
-                                 <td>KVKnumber</td>
+                                 <th>{{__('shops.id')}}</th>
+                                 <td>{{__('shops.name')}}</td>
+                                 <td>{{__('shops.streetname')}}</td>
+                                 <td>{{__('shops.streetnumber')}}</td>
+                                 <td>{{__('shops.postalcode')}}</td>
+                                 <td>{{__('shops.KVKnumber')}}</td>
                                  </tr>
                              </thead>
                              <tbody>

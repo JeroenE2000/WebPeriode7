@@ -4,7 +4,7 @@
 
 @if($errors->any())
     <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>{{('errors.Whoops')}}</strong> {{('errors.errorMessage')}}<br><br>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -20,7 +20,7 @@
                 <br>
                 <h3 class="card-title">{{$user->email}}</h3>
                 <br>
-                <h3 class="card-title">role bijwerken</h3>
+                <h3 class="card-title">{{__('users.edit')}}</h3>
             </div>
             <form action="{{route ('users.update' , $user->id)}}" method="POST">
                 @csrf
@@ -28,18 +28,18 @@
                 <div class="card-body">
                     <div class="form-group">
                         <select type="text" name="role" class="form-control">
-                            <option>Selecteer een role</option>
+                            <option>{{__('users.select')}}</option>
                             @foreach($roles as $r)
                                 <option value="{{$r->id}}" {{$r->id == $user->id ? 'selected' : ''}}>{{$r->name}}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">{{__('users.submit')}}</button>
                 </div>
             </form>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('labels.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('labels.index') }}">{{__('users.back')}}</a>
             </div>
         </div>
     </div>

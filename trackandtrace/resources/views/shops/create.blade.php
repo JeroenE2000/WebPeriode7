@@ -4,7 +4,7 @@
 
 @if ($errors->any())
     <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>{{('errors.Whoops')}}</strong> {{('errors.errorMessage')}}<br><br>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -16,18 +16,18 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Shops aanmaken</h3>
+                    <h3 class="card-title">{{__('shops.create')}}</h3>
                 </div>
                 <form action="{{ route('shops.store') }}" method="POST">
                     @csrf
                     <table class="table" id="multiForm">
                         <thead>
                             <tr>
-                                <th>name</th>
-                                <th>streetname</th>
-                                <th>streetnumber</th>
-                                <th>postalcode</th>
-                                <th>KVKnumber</th>
+                                <th>{{__('shops.name')}}</th>
+                                <th>{{__('shops.streetname')}}</th>
+                                <th>{{__('shops.streetnumber')}}</th>
+                                <th>{{__('shops.postalcode')}}</th>
+                                <th>{{__('shops.KVKnumber')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,7 +45,7 @@
                     </div>
                 </form>
                 <div class="pull-right mt-3">
-                    <a class="btn btn-primary" href="{{ route('shops.index') }}"> Back</a>
+                    <a class="btn btn-primary" href="{{ route('shops.index') }}">{{__('shops.back')}}</a>
                 </div>
             </div>
         </div>
