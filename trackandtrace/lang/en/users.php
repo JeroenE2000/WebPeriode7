@@ -22,4 +22,5 @@ return [
     'back' => 'Back',
     'submit' => 'Submit',
     'select' => 'Select a role',
+    'selectShop' => 'Select a shop',
 ];

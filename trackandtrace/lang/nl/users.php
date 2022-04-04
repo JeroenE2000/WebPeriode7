@@ -22,4 +22,5 @@ return [
     'back' => 'Terug',
     'submit' => 'Voer in',
     'select' => 'Selecteer een rol',
+    'selectShop' => 'Selecteer een winkel',
 ];
