@@ -15,7 +15,7 @@ return [
 
     'KVKnumber' => 'KVK number',
     'postalcode' => 'Postalcode',
-    'streetnumber' => 'Streetnumber',
+    'streetnumber' => 'Housenumber',
     'streetname' => 'Streetname',
     'name' => 'Name',
     'id' => 'Id',
