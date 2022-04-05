@@ -58,12 +58,6 @@ class PackageController extends Controller
             'parcel_status_id' => 'required|integer',
             'receiver_id' => 'required|integer',
         ]);
-        $parcels = Parcels::all();
-        foreach ($parcels as $key => $value) {
-            if($value->labels_id == $request->input('labels_id')) {
-                return response("Label is al gekoppeld aan pakket", 403);
-            }
-        }
 
         return Parcels::create($request->all());
     }
@@ -108,14 +102,17 @@ class PackageController extends Controller
     {
         $request->validate([
             'deliveryservice' => 'required|string',
-            'label_id' => 'required|integer|unique:parcels,label_id',
+            'label_id' => 'required|integer',
             'shop_id' => 'required|integer',
             'parcel_status_id' => 'required|integer',
-            'receiver_id' => 'required|integer',
         ]);
         $package = Parcels::find($id);
+        if($package === null) {
+            return response("Cant find a package with id: $id", 404);
+        }
         $package->update($request->all());
-        return $package;
+        $package->save();
+        return Parcels::with('parcel_status')->find($id);
     }
 
     public function apiDestroy($id)

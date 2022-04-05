@@ -32,6 +32,6 @@ class TimeValidionTest extends TestCase
         Auth::shouldReceive('check')->once()->andReturn(true);
         Auth::shouldReceive('user')->once()->andReturn($user);
 
-        $this->assertTrue($request->authorize());
+        $this->assertTrue($request);
     }
 }
