@@ -20,8 +20,6 @@ return [
     'shops' => 'Winkels',
     'users' => 'Gebruikers',
     'review' => 'Reviews',
-
-
-
+    'searchpackage' => 'pakket status'
 
 ];

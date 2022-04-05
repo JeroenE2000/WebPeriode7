@@ -20,7 +20,6 @@ return [
     'shops' => 'Shops',
     'users' => 'Users',
     'review' => 'Reviews',
-
-
+    'searchpackage' => 'Package state'
 
 ];
