@@ -40,8 +40,9 @@ class PackageController extends Controller
             $data = Parcels::where('shop_id' , '=' , $user->shop_id)->get();
             return view('parcels.index' ,['parcels' => $data]);
         }
-        $data = Parcels::all();
-        return view('parcels.index' ,['packages' => $data]);
+        $packages = Parcels::with('parcel_label' , 'shop' , 'parcel_status' , 'receiver')->sortable()->paginate(5);
+
+        return view('parcels.index' ,['packages' => $packages]);
     }
 
     public function create()
