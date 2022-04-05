@@ -105,8 +105,14 @@
           @endif
           <li class="nav-item">
             <a href="{{url('reviews')}}" class="nav-link">
-              <i class="nav-icon ion ion-person"></i>
+              <i class="nav-icon ion-ios-star"></i>
               <p>{{__('admin.review')}}</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('/')}}" class="nav-link">
+                <i class="nav-icon ion-ios-search"></i>
+              <p>{{__('admin.searchpackage')}}</p>
             </a>
           </li>
         </ul>
