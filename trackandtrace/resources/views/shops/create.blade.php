@@ -32,11 +32,11 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><input type="text" name="name" class="form-control" required/></td>
-                            <td><input type="text" name="streetname" class="form-control" required/></td>
-                            <td><input type="text" name="streetnumber" class="form-control"required/></td>
-                            <td><input type="text" name="postalcode" class="form-control" required/></td>
-                            <td><input type="number" name="KVKnumber" class="form-control" required/></td>
+                            <td><input id="shopName" type="text" name="name" class="form-control" required/></td>
+                            <td><input id="shopStreetname" type="text" name="streetname" class="form-control" required/></td>
+                            <td><input id="shopStreetnumber" type="text" name="streetnumber" class="form-control"required/></td>
+                            <td><input id="shopPostalcode" type="text" name="postalcode" class="form-control" required/></td>
+                            <td><input id="shopKVKnumber" type="number" name="KVKnumber" class="form-control" required/></td>
                         </tr>
                         </tbody>
                     </table>

@@ -94,7 +94,7 @@ class UserController extends Controller
             return view('users.edit' , compact('user' , 'roles' , 'shops'));
         }
         $user->role_id = $request->input('role');
-        if($request->input('shopID') === "Geen shop") {
+        if($request->input('shopID') === "null") {
             $user->shop_id = NULL;
 
         } else if($request->input('role') === '4') {

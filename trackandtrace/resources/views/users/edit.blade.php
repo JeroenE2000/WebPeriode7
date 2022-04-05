@@ -34,7 +34,7 @@
                             @endforeach
                         </select>
                         <select type="text" name="shopID" class="form-control">
-                            <option>{{__('users.selectShop')}}</option>
+                            <option value="null">{{__('users.selectShop')}}</option>
                             @foreach($shops as $s)
                                 <option value="{{$s->id}}" {{$s->id == $user->shop_id ? 'selected' : ''}}>{{$s->name}}</option>
                             @endforeach

@@ -56,7 +56,7 @@
                                 <td>{{$package->parcel_status->state}}</td>
                                 <td>{{$package->receiver->name}}</td>
                                 @if(auth()->user()->role_id == 4)
-                                <td><a class="btn btn-primary" href="{{ route('review.create',$package) }}">add Review</a></td>
+                                <td><a id="reviewBtn{{$package->id}}" class="btn btn-primary" href="{{ route('review.create',$package) }}">add Review</a></td>
                                 @endif
                                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     @if($package->pickup !== null)
