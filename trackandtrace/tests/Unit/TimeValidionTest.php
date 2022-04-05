@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
+use Carbon\Carbon;
+use Faker\Factory;
 use Tests\TestCase;
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PickupTimeRequest;
+use Illuminate\Support\Facades\Validator;
 
 class TimeValidionTest extends TestCase
 {
@@ -15,23 +15,55 @@ class TimeValidionTest extends TestCase
      *
      * @return void
      */
-    public function test_check_If_Pick_Up_Time_Is_Correct()
+    public function test_should_contain_all_the_expected_validation_rules()
     {
+        $request = new PickupTimeRequest();
 
+        $timeCheck = mktime(15,0 ,0);
+        $minusday = '+1 day';
+        $format = ('Y-m-d H:i:s');
+        $dateCheck = date($format , strtotime(date($format , $timeCheck).$minusday));
+        $this->assertEquals([
+            'time' => 'required|after_or_equal:'.$dateCheck,
+        ], $request->rules());
+    }
 
+    /**
+     * @dataProvider provideinValidData
+     */
+    public function test_should_contain_invalid_pickuptime(array $data)
+    {
+        $request = new PickupTimeRequest();
+        $validator = Validator::make($data, $request->rules());
 
-        $user = User::factory()->create();
+        $this->assertFalse($validator->passes());
+    }
 
-        $url = "/pickup/3/create";
-        $method = 'POST';
+    public function provideinValidData()
+    {
+        return [
+            [[
+                'time' => now(),
+            ]],
+        ];
+    }
+ /**
+     * @dataProvider provideValidData
+     */
+    public function test_should_contain_valid_pickup(array $data)
+    {
+        $request = new PickupTimeRequest();
+        $validator = Validator::make($data, $request->rules());
+        $this->assertTrue($validator->passes());
+    }
 
-        $request = PickupTimeRequest::create($url, $method, [
-            'time' => '"2022-04-07T12:19',
-        ]);
-
-        Auth::shouldReceive('check')->once()->andReturn(true);
-        Auth::shouldReceive('user')->once()->andReturn($user);
-
-        $this->assertTrue($request);
+    public function provideValidData()
+    {
+        $date = Carbon::now()->addDays(3);
+        return [
+            [[
+                'time' => $date,
+            ]],
+        ];
     }
 }
