@@ -1,0 +1,7 @@
+{
+    "The :attribute must contain at least one letter.": "De :attribute moet minstens 1 letter bevatten.",
+    "The :attribute must contain at least one number.": "De :attribute moet minstens 1 nummer bevatten.",
+    "The :attribute must contain at least one symbol.": "De :attribute moet minstens 1 symbool bevatten .",
+    "The :attribute must contain at least one uppercase and one lowercase letter.": "De :attribute moet minstens een hoofdletter en een kleine letter bevatten.",
+    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "De gegeven :attribute komt uit een dataleak kies een andere attribute :attribute."
+}
