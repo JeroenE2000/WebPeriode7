@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             ParcelStatusSeeder::class,
-            LabelSeeder::class,
             ShopSeeder::class,
+            LabelSeeder::class,
             ParcelSeeder::class,
         ]);
     }
