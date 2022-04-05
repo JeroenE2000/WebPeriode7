@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewRequest;
 use App\Models\Parcels;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -50,14 +51,8 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
-        $request->validate([
-            'stars' => 'required',
-            'description' => 'required',
-            'user_id' => 'required',
-            'shop_id' => 'nullable',
-        ]);
         Review::create($request->all());
 
         return redirect()->route('reviews.index')->with('success' , 'Review succesvol toegevoegd');
