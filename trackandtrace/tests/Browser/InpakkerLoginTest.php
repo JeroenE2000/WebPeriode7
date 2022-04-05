@@ -20,7 +20,6 @@ class InpakkerLoginTest extends DuskTestCase
                     ->type('email' , 'kees@gmail.com')
                     ->type('password' , 'password')
                     ->press('Login')
-                    ->pause(2000)
                     ->assertPathIs('/home');
         });
     }

@@ -19,7 +19,6 @@ class AdministratorLoginTest extends DuskTestCase
                     ->type('email' , 'piet@gmail.com')
                     ->type('password' , 'password')
                     ->press('Login')
-                    ->pause(2000)
                     ->assertPathIs('/home');
         });
     }

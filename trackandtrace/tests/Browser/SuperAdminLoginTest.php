@@ -20,7 +20,6 @@ class SuperAdminLoginTest extends DuskTestCase
                     ->type('email' , 'test@gmail.com')
                     ->type('password' , 'password')
                     ->press('Login')
-                    ->pause(2000)
                     ->assertPathIs('/home');
         });
     }

@@ -20,7 +20,6 @@ class RecieverLoginTest extends DuskTestCase
                     ->type('email' , 'jeroen@gmail.com')
                     ->type('password' , 'password')
                     ->press('Login')
-                    ->pause(2000)
                     ->assertPathIs('/home');
         });
     }

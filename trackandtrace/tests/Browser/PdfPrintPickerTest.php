@@ -20,14 +20,12 @@ class PdfPrintPickerTest extends DuskTestCase
                     ->type('email' , 'test@gmail.com')
                     ->type('password' , 'password')
                     ->press('Login')
-                    ->pause(2000)
                     ->assertPathIs('/home')
                     ->visit('/labels')
                     ->assertPathIs('/labels')
                     ->check("#checkbox1")
                     ->check("#checkbox2")
                     ->press('PdfExport')
-                    ->pause(2000)
                     ->assertPathIs('/labels');
         });
     }

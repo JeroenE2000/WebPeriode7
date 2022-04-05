@@ -20,7 +20,6 @@ class CsvImportTest extends DuskTestCase
             ->type('email' , 'test@gmail.com')
             ->type('password' , 'password')
             ->press('Login')
-            ->pause(2000)
             ->assertPathIs('/home')
             ->visit('/labels')
             ->assertPathIs('/labels')
@@ -29,11 +28,8 @@ class CsvImportTest extends DuskTestCase
                 $browser->attribute('#csv' , 'href')
             )
             ->assertPathIs('/labels/import/labels')
-            ->pause(2000)
             ->attach('file', storage_path('app/public/testing/testData.csv'))
-            ->pause(2000)
             ->press('Import data')
-            ->pause(5000)
             ->assertPathIs('/labels');
         });
     }

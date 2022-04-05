@@ -33,9 +33,7 @@ class LabelUpdateTest extends DuskTestCase
                     ->assertPathIs('/labels/1/edit')
                     ->type('Address_Sender' , '5634 FF')
                     ->type('Address_Reciever' , '2344 AH')
-                    ->pause(2000)
                     ->press('Submit')
-                    ->pause(2000)
                     ->assertPathIs('/labels');
         });
     }

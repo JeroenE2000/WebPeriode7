@@ -24,7 +24,6 @@ class MakeNewLabelTest extends DuskTestCase
                     ->type('email' , 'test@gmail.com')
                     ->type('password' , 'password')
                     ->press('Login')
-                    ->pause(2000)
                     ->assertPathIs('/home')
                     ->visit('/labels')
                     ->assertPathIs('/labels')
@@ -58,9 +57,7 @@ class MakeNewLabelTest extends DuskTestCase
                     ->type('#Weight1' , '200')
                     ->type('#shop_id' , '2')
                     ->type('#shop_id1' , '2')
-                    ->pause(2000)
                     ->press('Submit')
-                    ->pause(2000)
                     ->assertPathIs('/labels');
 
         });
