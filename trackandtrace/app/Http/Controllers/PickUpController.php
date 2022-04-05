@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Parcels;
-use App\Models\Pickup;
 use DateTime;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\Pickup;
+use App\Models\Parcels;
+use Illuminate\Http\Request;
+use App\Http\Requests\PickupTimeRequest;
 
 class PickUpController extends Controller
 {
@@ -26,15 +27,8 @@ class PickUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function pickUpStoreAndUpdate(Request $request , $packageId)
+    public function pickUpStoreAndUpdate(PickupTimeRequest $request , $packageId)
     {
-        $timeCheck = mktime(15,0 ,0);
-        $minusday = '+1 day';
-        $format = ('Y-m-d H:i:s');
-        $dateCheck = date($format , strtotime(date($format , $timeCheck).$minusday));
-        $request->validate([
-            'time' => 'required|after_or_equal:'.$dateCheck,
-        ]);
         Pickup::create($request->all());
         $parcel = Parcels::find($packageId);
         $parcel->parcel_status_id = 4;
