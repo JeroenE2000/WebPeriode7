@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <select type="text" name="role" class="form-control">
-                            <option>{{__('users.select')}}</option>
+                            <option value="null">{{__('users.select')}}</option>
                             @foreach($roles as $r)
                                 <option value="{{$r->id}}" {{$r->id == $user->role_id ? 'selected' : ''}}>{{$r->name}}</option>
                             @endforeach

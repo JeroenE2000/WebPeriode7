@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Shops;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -34,6 +35,46 @@ class UserController extends Controller
         return view('users.edit' , compact('user' , 'roles' , 'shops'));
     }
 
+    public function create()
+    {
+        $roles = Role::all();
+        $shops = Shops::all();
+        return view('users.create' , compact('roles' , 'shops'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'role_id' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        $roles = Role::all();
+        $shops = Shops::all();
+        $shop_id = null;
+        if($request->input('shopID') === "null") {
+            $shop_id = NULL;
+        } else if($request->input('role') === '4') {
+            return view('users.create' , compact('roles' , 'shops'));
+        }
+        else {
+            $shop_id = $request->input('shop_id');
+        }
+        if($request->input('role_id') === "null") {
+            return view('users.create' , compact('roles' , 'shops'));
+        }
+
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role_id' => $request->input('role_id'),
+            'shop_id' =>  $shop_id
+        ]);
+
+        return redirect()->route('users.index')->with('success' , 'user is added');
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -61,6 +102,9 @@ class UserController extends Controller
         }
         else {
             $user->shop_id = $request->input('shopID');
+        }
+        if($request->input('role_id') === "null") {
+            return view('users.edit' , compact('user' , 'roles' , 'shops'));
         }
 
         $user->save();

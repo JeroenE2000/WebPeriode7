@@ -34,7 +34,7 @@ Route::get('lang/{lang}',  [LanguageController::class , 'switchLang'])->name('la
 
 Route::middleware(['isSuperAdmin'])->group(function() {
     Route::resource('/labels' , LabelController::class);
-    Route::resource('/users', UserController::class)->only(['index' , 'edit' , 'update']);
+    Route::resource('/users', UserController::class)->only(['index' , 'edit' , 'update' ,'create' , 'store']);
 
     Route::get('/labels/import/labels', [LabelController::class, 'fileImportExport'])->name('label.csvimport');
     Route::post('/labels/labels-import' , [LabelController::class,'fileImport'])->name('label.import');

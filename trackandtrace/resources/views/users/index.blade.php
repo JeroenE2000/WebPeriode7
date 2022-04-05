@@ -6,8 +6,8 @@
        <div class="row">
           <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
-                 @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                     <a class="btn btn-success" href="{{ route('shops.create') }}">{{__('users.create')}}</a>
+                 @if(auth()->user()->role_id === 1)
+                     <a class="btn btn-success" href="{{ route('users.create') }}">{{__('users.create')}}</a>
                  @endif
                 </div>
           </div>
